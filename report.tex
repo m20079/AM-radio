@@ -1,0 +1,43 @@
+\documentclass[11pt,dvipdfmx]{jarticle}
+
+\usepackage{here}
+\usepackage{style/eee}
+\usepackage{url}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{subfiles}
+\usepackage{mathtools}
+\usepackage{xr}
+
+\begin{document}
+% トップページを書く
+\begin{jikkenTitle} % この行で全体の枠を表示
+  \gakunen{4} % 学年を記述。学年によって予定日部分の記載は異なる
+  \numTitle{8}{単相変圧器の並行運転試験} % 実験番号、タイトルを記述
+  \subTitle{} % サブタイトルがあれば記述
+  \jikkenbi{2023年10月3日(火)} % 実験日を記述
+  % \jikkenbiII{2023年8月8日(火)} % 実験日を記述(二日目がある場合。ない場合はこの行をコメントアウト)
+  \kyoudou{} % 共同実験者名を記述
+  \kyoudouII{} % その他の共同実験者名を記述
+
+  %%% 4年以外の場合(4年はコメント) %%%
+  %\yoteibi{4/28}% 予定日を記述
+  %\yoteibiII{5/12}% 予定日2を記述
+  %\yoteibiIII{5/19}% 予定日3を記述
+
+  \preYoteibi{9/25} % プレレポート予定日
+  \preYoteibiII{/} % プレレポート予定日2
+  \preYoteibiIII{/} % プレレポート予定日3
+  \mainYoteibi{/} % メインレポート予定日
+  \mainYoteibiII{/} % メインレポート2予定日
+  \mainYoteibiIII{/} % メインレポート3予定日
+  \hanNumberName{3}{4322}{竹中 公材} % 班番号・学生番号・氏名を記述。この行でタイトルページの描画を終了
+\end{jikkenTitle}
+
+\subfile{theory.tex}
+
+\renewcommand{\refname}{参考文献}
+\bibliographystyle{bib/sieicej.bst}
+\bibliography{bib/reference}
+
+\end{document}
