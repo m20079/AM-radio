@@ -13,21 +13,21 @@ def drawio_to_pdf(input_file: str, output_folder: str):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
     basename = os.path.splitext(os.path.basename(input_file))[0]
-    print(f"Converting {input_file} to {output_folder}{basename}.pdf")
+    print(f"Converting {input_file} to {output_folder}/{basename}.pdf")
     subprocess.run(
         args=[f"draw.io.exe -xrf pdf -o {output_folder} {input_file}"],
         shell=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
-    print(f"Cropping {output_folder}{basename}.pdf")
+    print(f"Cropping {output_folder}/{basename}.pdf")
     subprocess.run(
         args=[f"pdfcrop {output_folder}/{basename}.pdf {output_folder}/{basename}.pdf"],
         shell=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
-    print(f"Splitting {output_folder}{basename}.pdf")
+    print(f"Splitting {output_folder}/{basename}.pdf")
     tree = ET.parse(input_file)
     root = tree.getroot()
     name = [diagram.attrib["name"] for diagram in root.iter("diagram")]
