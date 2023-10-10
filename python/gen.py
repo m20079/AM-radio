@@ -60,4 +60,4 @@ def crop_pdf(folder: str):
         executor.map(crop_process, files)
 
 
-drawio_to_pdf("../fig/fig.drawio", "../fig")
+drawio_to_pdf("fig.drawio", "../fig")

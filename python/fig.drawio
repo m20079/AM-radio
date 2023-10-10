@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="CnmijeTSaMzdyb4Rgkv6" name="radio">
-        <mxGraphModel dx="723" dy="552" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="1" shadow="0">
+        <mxGraphModel dx="737" dy="552" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="1" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -63,7 +63,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="K5em8POVMiBVMdtGB53U" name="amp">
-        <mxGraphModel dx="723" dy="552" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
+        <mxGraphModel dx="737" dy="552" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
