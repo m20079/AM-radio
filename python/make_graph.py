@@ -484,7 +484,7 @@ class Graph:
             labelbottom=False, labelleft=False, labelright=False, labeltop=False
         )
         # self.ax.tick_params(bottom=False, left=False, right=False, top=False)
-        self.ax.axis("off")
+        # self.ax.axis("off")
         self.figure.savefig(self.out_file)
 
     def execute(self):

@@ -17,8 +17,8 @@ marker4 = Marker(marker="^", markersize=5, color="c")
 
 marker5 = Marker(marker="s", markersize=5, color="m")
 
-pdf = "svg"
-folder = "fig2"
+pdf = "pdf"
+folder = "fig"
 
 make_graph(
     multiprocessing=False,
@@ -65,7 +65,7 @@ make_graph(
             y1_label=[
                 r"Voltage $\mathrm{[V]}$",
             ],
-            x_axis=Axis(minor=0.002),
+            x_axis=Axis(minor=0.0002),
             y1_axis=Axis(lim=Lim(-8, 8), minor=0.2),
             data=[
                 Data(
@@ -83,7 +83,7 @@ make_graph(
             y1_label=[
                 r"Voltage $\mathrm{[V]}$",
             ],
-            x_axis=Axis(minor=0.002),
+            x_axis=Axis(minor=0.0002),
             y1_axis=Axis(lim=Lim(-8, 8), minor=0.2),
             data=[
                 Data(
@@ -101,7 +101,7 @@ make_graph(
             y1_label=[
                 r"Voltage $\mathrm{[V]}$",
             ],
-            x_axis=Axis(minor=0.002),
+            x_axis=Axis(minor=0.0002),
             y1_axis=Axis(lim=Lim(-8, 8), minor=0.2),
             data=[
                 Data(
