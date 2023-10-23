@@ -17,35 +17,38 @@ marker4 = Marker(marker="^", markersize=5, color="c")
 
 marker5 = Marker(marker="s", markersize=5, color="m")
 
-pdf = "pdf"
+pdf = "svg"
+folder = "fig2"
 
 make_graph(
     multiprocessing=False,
     graphs=[
-        # Graph(
-        #     f"../fig/5V.{pdf}",
-        #     x_label=[r"Time $\mathrm{[s]}$"],
-        #     y1_label=[
-        #         r"Voltage $\mathrm{[V]}$",
-        #     ],
-        #     y1_axis=Axis(lim=Lim(-8, 8)),
-        #     data=[
-        #         Data(
-        #             x_col="A",
-        #             y_col="B",
-        #             sheet=sheet1,
-        #             marker=marker1,
-        #             label=r"$\mathrm{V_{2A} [V]}$",
-        #         ),
-        #     ],
-        # ),
         Graph(
-            f"../fig/3V.{pdf}",
+            f"../{folder}/5V.{pdf}",
             x_label=[r"Time $\mathrm{[s]}$"],
             y1_label=[
                 r"Voltage $\mathrm{[V]}$",
             ],
-            y1_axis=Axis(lim=Lim(-8, 8)),
+            x_axis=Axis(minor=0.002),
+            y1_axis=Axis(lim=Lim(-8, 8), minor=0.2),
+            data=[
+                Data(
+                    x_col="A",
+                    y_col="B",
+                    sheet=sheet1,
+                    marker=marker1,
+                    label=r"$\mathrm{V_{2A} [V]}$",
+                ),
+            ],
+        ),
+        Graph(
+            f"../{folder}/3V.{pdf}",
+            x_label=[r"Time $\mathrm{[s]}$"],
+            y1_label=[
+                r"Voltage $\mathrm{[V]}$",
+            ],
+            x_axis=Axis(minor=0.002),
+            y1_axis=Axis(lim=Lim(-8, 8), minor=0.2),
             data=[
                 Data(
                     x_col="D",
@@ -56,30 +59,32 @@ make_graph(
                 ),
             ],
         ),
-        # Graph(
-        #     f"../fig/Wave.{pdf}",
-        #     x_label=[r"Time $\mathrm{[s]}$"],
-        #     y1_label=[
-        #         r"Voltage $\mathrm{[V]}$",
-        #     ],
-        #     y1_axis=Axis(lim=Lim(-8, 8)),
-        #     data=[
-        #         Data(
-        #             x_col="G",
-        #             y_col="H",
-        #             sheet=sheet1,
-        #             marker=marker3,
-        #             label=r"$\mathrm{V_{2A} [V]}$",
-        #         ),
-        #     ],
-        # ),
         Graph(
-            f"../fig/diode.{pdf}",
+            f"../{folder}/Wave.{pdf}",
             x_label=[r"Time $\mathrm{[s]}$"],
             y1_label=[
                 r"Voltage $\mathrm{[V]}$",
             ],
-            y1_axis=Axis(lim=Lim(-8, 8)),
+            x_axis=Axis(minor=0.002),
+            y1_axis=Axis(lim=Lim(-8, 8), minor=0.2),
+            data=[
+                Data(
+                    x_col="G",
+                    y_col="H",
+                    sheet=sheet1,
+                    marker=marker3,
+                    label=r"$\mathrm{V_{2A} [V]}$",
+                ),
+            ],
+        ),
+        Graph(
+            f"../{folder}/diode.{pdf}",
+            x_label=[r"Time $\mathrm{[s]}$"],
+            y1_label=[
+                r"Voltage $\mathrm{[V]}$",
+            ],
+            x_axis=Axis(minor=0.002),
+            y1_axis=Axis(lim=Lim(-8, 8), minor=0.2),
             data=[
                 Data(
                     x_col="J",
@@ -91,12 +96,13 @@ make_graph(
             ],
         ),
         Graph(
-            f"../fig/capa.{pdf}",
+            f"../{folder}/capa.{pdf}",
             x_label=[r"Time $\mathrm{[s]}$"],
             y1_label=[
                 r"Voltage $\mathrm{[V]}$",
             ],
-            y1_axis=Axis(lim=Lim(-8, 8)),
+            x_axis=Axis(minor=0.002),
+            y1_axis=Axis(lim=Lim(-8, 8), minor=0.2),
             data=[
                 Data(
                     x_col="M",

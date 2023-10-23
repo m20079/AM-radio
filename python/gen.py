@@ -62,3 +62,4 @@ def crop_pdf(folder: str):
 
 drawio_to_pdf("fig.drawio", "../fig")
 crop_pdf("../fig")
+crop_pdf("../fig2")
