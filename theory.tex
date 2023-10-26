@@ -59,9 +59,9 @@
 この時の周波数\(f\)は以下のようにして決定することが出きる。
 
 \begin{align}
-	\omega^2 LC & = 1                         \\
-	\omega      & = \frac{1}{\sqrt{LC}}       \\
-	f           & = \frac{1}{2 \pi \sqrt{LC}}
+	\omega^2 LC & = 1                                              \\
+	\omega      & = \frac{1}{\sqrt{LC}}                            \\
+	f           & = \frac{1}{2 \pi \sqrt{LC}} \label{eq:resonance}
 \end{align}
 
 \wfig{tuning-circuit}では、同調回路のキャパシタンス部分に可変コンデンサ（バリアブルコンデンサ）を用いている。
@@ -149,11 +149,26 @@
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=15cm]{fig/amp2.pdf}
+	\includegraphics[width=8cm]{fig/amp2.pdf}
 	\caption{非反転増幅回路}
 	\label{fig:amplifier-circuit2}
 \end{figure}
 
+\subsection{可変抵抗（ボリューム）}
 
+可変抵抗には、主にAカーブとBカーブとCカーブなどの種類がある。
+\wfig{cabe}にそれぞれのカーブの特性を示す。
+Aカーブは、回転角度に対して、抵抗値が指数関数的に上昇する。
+Bカーブは、回転角度に対して、抵抗値が比例的に上昇する。
+Cカーブは、回転角度に対して、抵抗値が対数関数的に上昇する。
+人間の耳は、オーディオの出力信号に対して比例的に感じることはなく、その対数に比例して感じる（小さい音に敏感に反応する）。
+そのため、オーディオの音量調節には、Aカーブの可変抵抗を用いることが多い。
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=8cm]{fig/cabe.pdf}
+	\caption{可変抵抗のカーブ}
+	\label{fig:cabe}
+\end{figure}
 
 \end{document}

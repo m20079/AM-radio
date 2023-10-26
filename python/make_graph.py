@@ -471,7 +471,7 @@ class Graph:
         self.ax.legend(
             empty_h,
             empty_l,
-            loc="upper right",
+            loc="best",
             frameon=False,
             fancybox=False,
             framealpha=1,
