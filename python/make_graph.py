@@ -471,7 +471,7 @@ class Graph:
         self.ax.legend(
             empty_h,
             empty_l,
-            loc="upper left",
+            loc="upper right",
             frameon=False,
             fancybox=False,
             framealpha=1,
@@ -480,11 +480,11 @@ class Graph:
     def save(self):
         self.ax.tick_params(axis="both", direction="in", which="both")
         # self.ax2.tick_params(axis="both", direction="in", which="both")
-        self.ax.tick_params(
-            labelbottom=False, labelleft=False, labelright=False, labeltop=False
-        )
+        # self.ax.tick_params(
+        #     labelbottom=False, labelleft=False, labelright=False, labeltop=False
+        # )
         # self.ax.tick_params(bottom=False, left=False, right=False, top=False)
-        self.ax.axis("off")
+        # self.ax.axis("off")
         self.figure.savefig(self.out_file)
 
     def execute(self):
@@ -494,7 +494,7 @@ class Graph:
         print(f"set label {self.out_file}")
         self.set_axis()
         print(f"set axis {self.out_file}")
-        # self.set_legend()
+        self.set_legend()
         print(f"set legend {self.out_file}")
         self.save()
         print(f"save {self.out_file}")

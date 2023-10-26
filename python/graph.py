@@ -55,13 +55,13 @@ make_graph(
                 r"Voltage $\mathrm{[V]}$",
             ],
             x_axis=Axis(minor=2),
-            y1_axis=Axis(lim=Lim(-1.5, 1.5), minor=0.1),
+            y1_axis=Axis(lim=Lim(-3.2, 3.2), minor=0.1),
             data=[
                 Data(
                     x_col="A",
                     y_col="B",
                     sheet=sheet2,
-                    marker=marker1,
+                    marker=marker5,
                     label=r"$\mathrm{V_{2A} [V]}$",
                 ),
                 # Data(
