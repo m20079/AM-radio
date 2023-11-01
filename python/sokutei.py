@@ -17,7 +17,9 @@ sheet2 = Sheet("./../data/data.xlsx", "diff", skiprows=0)
 
 sheet3 = Sheet("./../data/data.xlsx", "k", skiprows=1)
 
-marker1 = Marker(marker="o", markersize=4, color="r", ls="None")
+sheet4 = Sheet("./../data/data.xlsx", "valiable", skiprows=1)
+
+marker1 = Marker(marker="o", markersize=1, color="r", ls="None")
 
 marker2 = Marker(marker="D", markersize=4, color="b", ls="None")
 
@@ -34,42 +36,96 @@ make_graph(
     multiprocessing=False,
     graphs=[
         Graph(
-            f"../{folder}/gain.{pdf}",
-            x_label=[r"Frequency $\mathrm{[Hz]}$"],
+            f"../{folder}/koil.{pdf}",
+            x_label=[r"Time $\mathrm{[s]}$"],
             y1_label=[
-                r"Gain $\mathrm{[dB]}$",
+                r"Voltage $\mathrm{[V]}$",
             ],
-            y1_axis=Axis(minor=0.5, lim=Lim(min=-2, max=19)),
-            x_axis=LogAxis(lim=Lim(min=10**1, max=10**7), minor=True),
+            x_axis=Axis(minor=0.002),
+            y1_axis=Axis(lim=Lim(min=-0.049, max=0.049), minor=0.001),
             data=[
                 Data(
-                    x_col="S",
-                    y_col="V",
-                    sheet=sheet3,
+                    x_col="P",
+                    y_col="Q",
+                    sheet=sheet4,
                     marker=marker1,
-                    label=r"Measured value",
-                ),
-            ],
-            horizontal_base_line=[
-                BaseLine(
-                    value=15.1175,
-                    label=r"Theoretical value",
-                    linestyle="--",
-                )
-            ],
-            vertical_base_line=[
-                BaseLine(
-                    value=20,
-                    label=r"Lowest range",
-                    linestyle="-.",
-                ),
-                BaseLine(
-                    value=20000,
-                    label=r"Highest range",
-                    linestyle=":",
+                    label=r"185.193 times",
                 ),
             ],
         ),
+        Graph(
+            f"../{folder}/koil_diode.{pdf}",
+            x_label=[r"Time $\mathrm{[s]}$"],
+            y1_label=[
+                r"Voltage $\mathrm{[V]}$",
+            ],
+            x_axis=Axis(minor=0.002),
+            y1_axis=Axis(lim=Lim(min=-0.049, max=0.049), minor=0.001),
+            data=[
+                Data(
+                    x_col="T",
+                    y_col="U",
+                    sheet=sheet4,
+                    marker=marker1,
+                    label=r"185.193 times",
+                ),
+            ],
+        ),
+        Graph(
+            f"../{folder}/koil_diode_bi.{pdf}",
+            x_label=[r"Time $\mathrm{[s]}$"],
+            y1_label=[
+                r"Voltage $\mathrm{[V]}$",
+            ],
+            x_axis=Axis(minor=0.002),
+            y1_axis=Axis(lim=Lim(min=-0.049, max=0.049), minor=0.001),
+            data=[
+                Data(
+                    x_col="Z",
+                    y_col="AA",
+                    sheet=sheet4,
+                    marker=marker1,
+                    label=r"185.193 times",
+                ),
+            ],
+        ),
+        # Graph(
+        #     f"../{folder}/gain.{pdf}",
+        #     x_label=[r"Frequency $\mathrm{[Hz]}$"],
+        #     y1_label=[
+        #         r"Gain $\mathrm{[dB]}$",
+        #     ],
+        #     y1_axis=Axis(minor=0.5, lim=Lim(min=-2, max=19)),
+        #     x_axis=LogAxis(lim=Lim(min=10**1, max=10**7), minor=True),
+        #     data=[
+        #         Data(
+        #             x_col="S",
+        #             y_col="V",
+        #             sheet=sheet3,
+        #             marker=marker1,
+        #             label=r"Measured value",
+        #         ),
+        #     ],
+        #     horizontal_base_line=[
+        #         BaseLine(
+        #             value=15.1175,
+        #             label=r"Theoretical value",
+        #             linestyle="--",
+        #         )
+        #     ],
+        #     vertical_base_line=[
+        #         BaseLine(
+        #             value=20,
+        #             label=r"Lowest range",
+        #             linestyle="-.",
+        #         ),
+        #         BaseLine(
+        #             value=20000,
+        #             label=r"Highest range",
+        #             linestyle=":",
+        #         ),
+        #     ],
+        # ),
         # Graph(
         #     f"../{folder}/level12.{pdf}",
         #     x_label=[r"Time $\mathrm{[s]}$"],
