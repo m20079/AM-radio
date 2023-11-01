@@ -4,16 +4,16 @@
 
 \begin{document}
 
-\section{原理}
+\section{原理・設計}
 
 \wfig{all2}に今回作ったAMラジオの全体図を示す。
-今回作ったAMラジオは、ラジオ回路と増幅回路からなる。
+今回作ったAMラジオは、大きく分けてラジオ回路と増幅回路からなる。
 ラジオ回路は、電波から音声信号を取り出す回路である。
 増幅回路は、取り出した音声信号を増幅する回路である。
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=14cm]{fig/all2.pdf}
+	\includegraphics[width=16cm]{fig/all2.pdf}
 	\caption{全体}
 	\label{fig:all2}
 \end{figure}
@@ -32,68 +32,140 @@
 
 \subsubsection{ループアンテナ}
 
-\wfig{radio-circuit}で用いられているループアンテナは、巻き線をループ状に巻いたものである。
-ループアンテナは、電波の磁界成分で誘導起電力を引き起こし、電流が流れる。
+\wfig{radio-circuit}で用いられているアンテナは、エナメル線をループ状に巻いたループアンテナである。
+電波の磁界成分がループアンテナを貫くと誘導起電力（誘導電圧）を引き起こし、電流が流れる。
 この電流を誘導電流という。
-電波の磁界成分で誘導起電力を引き起こすのは、以下より求めることができる。
-ここで、\(B[\rm{T}]\)は磁束密度、\(\mu[\rm{H/m}]\)は透磁率、\(H[\rm{A/m}]\)は磁界の強さ、\(S[\rm{m^2}]\)はループアンテナの面積、\(N[\rm{turn}]\)はループアンテナの巻数、\(\Phi[\rm{Wb}]\)は磁束である。
-式より、磁界の強さの変化によって、誘導起電力が発生し、透磁率、巻き数、ループアンテナの面積に比例していることがわかる。
+ループアンテナの誘導起電力の大きさは、\weq{induced-voltage}より求めることが出来る。
+ここで、\(N[\rm{turn}]\)はループアンテナの巻数、\(\Phi[\rm{Wb}]\)は磁束、\(V[\rm{V}]\)が誘導起電力である。
+\weq{induced-voltage}は、ファラデーの法則（電磁誘導の法則）に巻数\(N\)倍したものである\cite{やくにたつ}。
 
 \begin{align}
-	B = \mu H               \\
-	\Phi = B S              \\ % TODO 電磁気の本
-	V = -N \frac{d\Phi}{dt} \\
-	V = -N S \mu \frac{dH}{dt}
+	V = -N \frac{d\Phi}{dt} \label{eq:induced-voltage}
+\end{align}
+
+磁束\(\Phi\)は、\weq{flux}より求めることができる\cite{電磁気学}。
+ここで、\(B[\rm{T}]\)は磁束密度、\(S[\rm{m^2}]\)はループアンテナの面積、\(\hat{n}\)はループアンテナの面積の法線ベクトルである。
+\weq{flux}のままだと難しいため、\weq{flux2}のように単純化して考える。
+
+\begin{align}
+	\Phi = \int_S \textbf{B} \cdot \hat{\textbf{n}} dS \label{eq:flux} \\
+	\Phi = B S \label{eq:flux2}
+\end{align}
+
+磁束密度\(B\)は、\weq{flux-density}より求めることができる。
+ここで、\(\mu[\rm{H/m}]\)は透磁率、\(H[\rm{A/m}]\)は磁界の強さである\cite{やくにたつ}。
+
+\begin{align}
+	B = \mu H \label{eq:flux-density}
+\end{align}
+
+\weq{induced-voltage}、\weq{flux2}、\weq{flux-density}を組み合わせると、\weq{induced-voltage2}のようになる。
+\weq{induced-voltage2}より、ループアンテナの誘導起電力は、磁界の強さの変化率、ループアンテナの面積、ループアンテナの巻数、透磁率に比例することがわかる。
+
+\begin{align}
+	V = -\mu N S \frac{dH}{dt} \label{eq:induced-voltage2}
 \end{align}
 
 \subsubsection{同調回路}
 
-同調回路は、様々な周波数の電波から、特定の周波数の電波を取り出す回路である。
+同調回路は、受信したい周波数の電波を取り出す回路である。
+同調回路を用いらないと、\wfig{notuse}のように、受信したい周波数の電波以外の電波も取り出してしまう。
+しかし、同調回路を用いると、\wfig{use}のように、受信したい特定の周波数の電波のみを取り出すことができる。
+
+\begin{figure}[H]
+	\begin{minipage}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width=8cm]{fig/diff.pdf}
+		\caption{同調回路を用いらなかった場合}
+		\label{fig:notuse}
+	\end{minipage}
+	\begin{minipage}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width=8cm]{fig/diff2.pdf}
+		\caption{同調回路を用いた場合}
+		\label{fig:use}
+	\end{minipage}
+\end{figure}
+
+\wfig{radio-circuit}の同調回路は、ループアンテナとバリアブルコンデンサを並列につなげている。
+ループアンテナのインダクタンスを\(L\)、バリアブルコンデンサのキャパシタンスを\(C\)とすると、この並列回路のインピーダンス\(\dot{Z}\)は、\weq{impedance}のようになる。
 
 \begin{align}
-	Z & = \frac{j \omega L \times \frac{1}{j \omega C}}{j \omega L + \frac{1}{j \omega C}} \\
-	  & = \frac{j \omega L}{1 - \omega^2 LC}                                               \\
+	\dot{Z} & = \frac{j \omega L \times \frac{1}{j \omega C}}{j \omega L + \frac{1}{j \omega C}} = \frac{j \omega L}{1 - \omega^2 LC} \label{eq:impedance}
 \end{align}
 
-ここで、$\omega^2 LC = 1$と仮定すると、インピーダンス\(Z\)は無限大となる。
-この時の周波数\(f\)は以下のようにして決定することが出きる。
+ここで、$\omega^2 LC = 1$と仮定すると、インピーダンス\(\dot{Z}\)は無限大となる。
+この時の周波数\(f\rm{[Hz]}\)は\weq{resonance2}\(\sim\)\weq{resonance}のようにして決定することが出来る。
 
 \begin{align}
-	\omega^2 LC & = 1                                              \\
-	\omega      & = \frac{1}{\sqrt{LC}}                            \\
+	\omega^2 LC & = 1                            \label{eq:resonance2} \\
+	\omega      & = \frac{1}{\sqrt{LC}}                                \\
 	f           & = \frac{1}{2 \pi \sqrt{LC}} \label{eq:resonance}
 \end{align}
 
-\wfig{tuning-circuit}では、同調回路のキャパシタンス部分に可変コンデンサ（バリアブルコンデンサ）を用いている。
-そのため、可変コンデンサの容量を変えることで、受信したい周波数を変えることができる。
-AMラジオでは、\wtab{zuishin}のような受信局（東京）がある。
+\wfig{tuning-circuit}では、ループアンテナのインダクタンス\(L\)を変更することができない。
+そのため、バリアブルコンデンサのキャパシタンス\(C\)を変更することで、受信したい周波数を選択する。
 
-\begin{table}[h]
+\subsubsection{同調回路の性能}
+
+\begin{figure}[H]
+	\begin{minipage}[b]{0.4\linewidth}
+		\centering
+		\includegraphics[width=7cm]{fig/kyo.pdf}
+		\caption{理想的な同調回路}
+		\label{fig:kyo}
+	\end{minipage}
+	\begin{minipage}[b]{0.6\linewidth}
+		\centering
+		\includegraphics[width=9cm]{fig/kyo2.pdf}
+		\caption{現実的な同調回路}
+		\label{fig:kyo2}
+	\end{minipage}
+\end{figure}
+
+めんどくさい
+
+\subsubsection{選択する周波数}
+
+\wfig{map}にAMラジオの送信所を地図にそれぞれ示したものを示す。
+\wtab{zyushin}にAMラジオの送信所の一覧とその周波数、送信出力、学校までの距離、地図上の色（数字）を示す。
+ここで、\wfig{map}の黒と桃色で作られた四角形は、受信場所である学校の大まかな場所を示している。
+（受信をテストした教室を基準に考えると）黒は壁でかこまれ、桃色は窓である。
+\wfig{map}でピンが刺さっている場所は、AMラジオの送信所でそれぞれ\wtab{zyushin}に対応している。
+
+\begin{figure}[H]
 	\centering
-	\caption{AMラジオの受信局（東京）}
+	\includegraphics[width=15cm]{use/map.png}
+	\caption{AMラジオの送信所の地図}
+	\label{fig:map}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\caption{AMラジオの送信所（東京で受信できると考えられる局）}
 	\label{tab:zyushin}
 	\begin{tabular}{ccccc} \hline
-		放送局    & 周波数[kHz] & 送信出力[kW] & 学校までの距離[km] & 受信できる周波数[kHz]           \\ \hline
-		NHK第1  & 594      & 300      & 40          & 40 \(\sim\) 3949.80     \\
-		NHK第2  & 693      & 500      & 40          & 40 \(\sim\) 2388.26     \\
-		AFN    & 810      & 50       & 45          & 600.69 \(\sim\) 4842.93 \\
-		TBSラジオ & 954      & 100      & 60          & 346.23 \(\sim\) 2790.26 \\
-		ニッポン放送 & 1134     & 100      & 32          & 155.69 \(\sim\) 1255.93 \\
-		文化放送   & 1242     & 100      & 18          & 170.69 \(\sim\) 1377.93 \\
-		ラジオ日本  & 1422     & 50       & 7           & 136.23 \(\sim\) 1099.26 \\ \hline
+		放送局    & 周波数[kHz] & 送信出力[kW] & 学校までの距離[km] & 地図上の色（数字） \\ \hline
+		NHK第1  & 594      & 300      & 約52.6       & 赤（1）      \\
+		NHK第2  & 693      & 500      & 約52.6       & 赤（1）      \\
+		AFN    & 810      & 50       & 約22.4       & 黄緑色（2）    \\
+		TBSラジオ & 954      & 100      & 約23.6       & 黄色（3）     \\
+		文化放送   & 1134     & 100      & 約24.3       & 橙色（4）     \\
+		ニッポン放送 & 1242     & 100      & 約31.8       & 水色（5）     \\
+		ラジオ日本  & 1422     & 50       & 約7.8        & 緑色（6）     \\ \hline
 	\end{tabular}
 \end{table}
 
 \subsubsection{検波回路}
 
-検波回路とは、電波から受け取った信号から音声信号を取り出す回路である。
+検波回路は、電波から受け取った信号から音声信号を取り出す回路である。
 今回作ったラジオは、振幅変調波（AM）を受信する回路である。
-振幅変調波は、\wfig{5V}のような搬送波と、\wfig{3V}のような信号波を用いて、\wfig{wave}のような電波として送信される。
-ここで、搬送波\(v_c\)の振幅を\(V_{cm}\)、周波数を\(f_c\)、信号波\(v_s\)の振幅を\(V_{sm}\)、周波数を\(f_s\)とすると、それぞれ次式のように表すことができる。
+振幅変調波は、\wfig{5V}のような搬送波と、\wfig{3V}のような信号波を用いて、\wfig{wave}のような波を電波として送信される。
+仮に、搬送波\(v_c\)の振幅を\(V_{cm}\)、周波数を\(f_c\)、信号波\(v_s\)の振幅を\(V_{sm}\)、周波数を\(f_s\)とすると、それぞれ\weq{v_c}\weq{v_s}のように表すことができる。
 
 \begin{align}
-	v_c = V_{cm} \sin(2 \pi f_c t) \\
-	v_s = V_{sm} \sin(2 \pi f_s t) \\
+	v_c = V_{cm} \sin(2 \pi f_c t) \label{eq:v_c} \\
+	v_s = V_{sm} \sin(2 \pi f_s t) \label{eq:v_s}
 \end{align}
 
 \begin{figure}[H]
@@ -111,10 +183,10 @@ AMラジオでは、\wtab{zuishin}のような受信局（東京）がある。
 	\end{minipage}
 \end{figure}
 
-振幅変調波\(v_o\)は、次式で表すことができ、\wfig{wave}のような波形になる。
+振幅変調波\(v_o\)は、\weq{v_o}で表すことができ、\wfig{wave}のような波形になる。
 
 \begin{align}
-	v_o = (V_{cm} + V_{sm} \sin(2 \pi f_s t)) \sin(2 \pi f_c t)
+	v_o = (V_{cm} + V_{sm} \sin(2 \pi f_s t)) \sin(2 \pi f_c t) \label{eq:v_o}
 \end{align}
 
 \begin{figure}[H]
@@ -124,8 +196,8 @@ AMラジオでは、\wtab{zuishin}のような受信局（東京）がある。
 	\label{fig:wave}
 \end{figure}
 
-検波回路ではまず、ゲルマニウムダイオードを用いて、\wfig{diode}のような波形にする。
-ダイオードには、順方向特性（逆方向に電圧がかからない）があるため、電圧がマイナスになっている部分はカットされる。
+\wfig{radio-circuit}の検波回路ではまず、ゲルマニウムダイオードを用いて、\wfig{wave}から\wfig{diode}のような波形にする。
+ダイオードには、順方向特性（逆方向に電圧がかからない）があるため、電圧がマイナスになっている部分はカットされる\cite{電子回路}。
 
 \begin{figure}[H]
 	\centering
@@ -137,7 +209,7 @@ AMラジオでは、\wtab{zuishin}のような受信局（東京）がある。
 また、0.001\(\upmu\)Fのコンデンサを用いて、搬送波部分を取り除く。
 キャパシタンスは、搬送波のような高い周波数に対しては、インピーダンスが小さくなる。
 逆に、信号波のような低い周波数に対しては、インピーダンスが大きくなる。
-そのため、\wfig{capa}のように搬送波が取り除かれて、信号波のみが残る。
+そのため、\wfig{diode}から\wfig{capa}のように搬送波が取り除かれて、信号波のみが残る。
 
 \begin{figure}[H]
 	\centering
@@ -148,19 +220,13 @@ AMラジオでは、\wtab{zuishin}のような受信局（東京）がある。
 
 \subsection{増幅回路}
 
-\wfig{amplifier-circuit}に増幅回路を示す。
-\wfig{amplifier-circuit}は、\wfig{amplifier-circuit2}のような非反転増幅回路を用いて設計されている。
-オペアンプ
-非反転増幅回路の増幅度\(A_{vf}\)は、次のように表される。
-
-\begin{align}
-	A_{vf} = 1 + \frac{R_2}{R_1}
-\end{align}
+\wfig{amplifier-circuit}に実際に作成した増幅回路を示す。
+\wfig{amplifier-circuit}は、\wfig{amplifier-circuit2}のような非反転増幅回路をベースにして設計されている。
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=15cm]{fig/amp.pdf}
-	\caption{増幅回路}
+	\caption{実際に作成した増幅回路}
 	\label{fig:amplifier-circuit}
 \end{figure}
 
@@ -171,6 +237,64 @@ AMラジオでは、\wtab{zuishin}のような受信局（東京）がある。
 	\label{fig:amplifier-circuit2}
 \end{figure}
 
+\subsubsection{非反転増幅回路}
+
+\wfig{amplifier-circuit2}を用いて増幅度を考える。
+まず、オペアンプ（演算増幅器）の入力インピーダンスは、無限大であると仮定する（つまり理想的なオペアンプ）。
+差動入力電圧は、(\(v_i - v_f\))である。
+そのため、出力電圧\(v_o\)は\weq{amp}のようになる。
+この時、\(A_v\)はオペアンプの増幅度を示す。
+
+\begin{align}
+	v_o = A_{v} (v_i - v_f) \label{eq:amp}
+\end{align}
+
+帰還電圧\(v_f\)は、\(R_1\)と\(R_2\)の分圧により\weq{amp2}のようになる。
+
+\begin{align}
+	v_f = \frac{R_2}{R_1 + R_2} v_o \label{eq:amp2}
+\end{align}
+
+\weq{amp}に\weq{amp2}を代入すると、\weq{amp3}\(\sim\)\weq{amp4}のようになる。
+
+\begin{align}
+	v_o & = A_v \left( v_i - \frac{R_2}{R_1 + R_2} v_o \right) \label{eq:amp3}               \\
+	v_o & = \frac{A_v}{\frac{A_v R_1}{R_1 + R_2}} v_i                                        \\
+	v_o & = \frac{1}{\frac{1}{A_v} + \frac{R_1}{R_1 + R_2}} v_i              \label{eq:amp4}
+\end{align}
+
+ここで、\(A_v = \infty\)であると仮定すると、\weq{amp5}のようになる。
+
+\begin{align}
+	v_o = \frac{R_1 + R_2}{R_1} v_i \label{eq:amp5}
+\end{align}
+
+\weq{amp5}から、電圧増幅度\(A_{vf}\)を求めると\weq{amp6}のようになる。
+
+\begin{align}
+	A_{vf} = \frac{v_o}{v_i} = \frac{R_1 + R_2}{R_1} = 1 + \frac{R_2}{R_1} \label{eq:amp6}
+\end{align}
+
+よって、\wfig{amplifier-circuit2}の電圧増幅度は、\weq{amp7}のようになる。
+
+\begin{align}
+	A_{vf} = 1 + \frac{47\rm{k}}{10\rm{k}} = 5.7倍 \label{eq:amp7}
+\end{align}
+
+\subsubsection{実際に作成した増幅回路}
+
+\wfig{amplifier-circuit}は、\wfig{amplifier-circuit2}にいくつか素子を加えている。
+まず、\wfig{amplifier-circuit}の\(C_1\)と\(C_2\)は、直流電圧をカットするためのカップリングコンデンサである。
+コンデンサは、高周波数に対してはインピーダンスが小さくなるため、直流は通さない。
+カップリングコンデンサをつける理由として、交流成分に直流成分が含まれてしまうと、オペアンプの電源として用いてる9Vよりも最大電圧が高い電圧（-9Vよりも最低電圧が低い電圧）を出力しようとしてしまうことがよくある（直流がない場合でもあるが可能性的に直流がある場合と比較して低い）。
+正弦波を入力していたと仮定すると、上半分（もしくは下半分）だけが方形波のようになってしまい、波形が歪んでしまう。
+また、スピーカーに直流成分をかけてしまうと、スピーカーが壊れてしまうことがある。
+\(C_3\)と\(C_4\)は、オペアンプの電源として用いている電池から発生するノイズをカットするためのバイパスコンデンサである。
+\(R_3\)の抵抗は、短絡してはいけない部分（電源やグラウンドなど）が短絡して過電流が流れないようにするための保護抵抗である。
+\(R_4\)の抵抗は、オペアンプを正常に動作させるためのバイアス抵抗である。
+\(R_4\)の抵抗を挿入することによって、無信号時に入力をGNDに固定することができる。
+また、\(R_4\)の抵抗がオペアンプの入力インピーダンスの代わりになってくれるためバイアス電流が流れやすくなる。
+
 \subsection{可変抵抗（ボリューム）}
 
 可変抵抗には、主にAカーブとBカーブとCカーブなどの種類がある。
@@ -179,7 +303,7 @@ Aカーブは、回転角度に対して、抵抗値が指数関数的に上昇�
 Bカーブは、回転角度に対して、抵抗値が比例的に上昇する。
 Cカーブは、回転角度に対して、抵抗値が対数関数的に上昇する。
 人間の耳は、オーディオの出力信号に対して比例的に感じることはなく、その対数に比例して感じる（小さい音に敏感に反応する）。
-そのため、オーディオの音量調節には、Aカーブの可変抵抗を用いることが多い。
+そのため、オーディオの音量調節には、Aカーブの可変抵抗を用いるのが良い。
 
 \begin{figure}[H]
 	\centering

@@ -17,8 +17,8 @@ marker4 = Marker(marker=",", markersize=1, color="m")
 
 marker5 = Marker(marker=",", markersize=1, color="c")
 
-pdf = "svg"
-folder = "fig2"
+pdf = "pdf"
+folder = "fig"
 
 make_graph(
     multiprocessing=False,
@@ -55,7 +55,7 @@ make_graph(
                 r"Voltage $\mathrm{[V]}$",
             ],
             x_axis=Axis(minor=2),
-            y1_axis=Axis(lim=Lim(-3.2, 3.2), minor=0.1),
+            y1_axis=Axis(lim=Lim(-1.8, 1.8), minor=0.1),
             data=[
                 Data(
                     x_col="A",
@@ -78,6 +78,38 @@ make_graph(
                 #     marker=marker3,
                 #     label=r"$\mathrm{V_{2A} [V]}$",
                 # ),
+            ],
+        ),
+        Graph(
+            f"../{folder}/diff.{pdf}",
+            x_label=[r"Time $\mathrm{[s]}$"],
+            y1_label=[
+                r"Voltage $\mathrm{[V]}$",
+            ],
+            x_axis=Axis(minor=2),
+            y1_axis=Axis(lim=Lim(-1.8, 1.8), minor=0.1),
+            data=[
+                Data(
+                    x_col="A",
+                    y_col="B",
+                    sheet=sheet2,
+                    marker=marker5,
+                    label=r"$\mathrm{V_{2A} [V]}$",
+                ),
+                Data(
+                    x_col="A",
+                    y_col="C",
+                    sheet=sheet2,
+                    marker=marker2,
+                    label=r"$\mathrm{V_{2A} [V]}$",
+                ),
+                Data(
+                    x_col="A",
+                    y_col="D",
+                    sheet=sheet2,
+                    marker=marker3,
+                    label=r"$\mathrm{V_{2A} [V]}$",
+                ),
             ],
         ),
         # Graph(
