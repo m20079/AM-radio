@@ -9,47 +9,22 @@
 今回製作できたラジオは，以下のような仕様となった。
 
 \begin{enumerate}
-	\item ゲルマニウムダイオードを用いた検波を行うことができた。
+	\item クリスタルイヤホンを用いてアンプなしでラジオを聞くことができた。
 	\item 4段のアンプを用いてスピーカーを駆動することができた。
 	\item 多少の雑音はあるが、何を話しているのかを聞き取ることができた。
 	\item ニッポン放送とTBSラジオと文化放送を受信することが出来たが複数の放送局が同時に聞こえる感じになってしまった。
 	\item 可変抵抗を用いて音量調整を行うことができた。
+	\item 教室（CAD室）内のどこでも受信できたが、ニッポン放送は窓側でないと聞き取れなかった。
 	\item 直径24cm、高さ38cmのループアンテナを用いた一号機は持ち運びが困難であった。
 	      しかし、直径6.5cm、高さ16.5cmのループアンテナを用いた二号機は少し受信感度が悪いが、持ち運びが容易であった。
-	\item 教室（CAD室）内のどこでも受信できたが、ニッポン放送は窓側でないと聞き取れなかった。
+	      三号機は一号機二号機と比べるとかなり小さいが、受信できなかったため使えない。
 \end{enumerate}
-
-\subsection{検波}
-
-
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=7cm]{fig/koil.pdf}
-	\caption{1号機アンテナの写真}
-	\label{fig:koil}
-\end{figure}
-
-\begin{figure}[H]
-	\begin{minipage}[b]{0.5\linewidth}
-		\centering
-		\includegraphics[width=7cm]{fig/koil_diode.pdf}
-		\caption{2号機アンテナの写真}
-		\label{fig:koil_diode}
-	\end{minipage}
-	\begin{minipage}[b]{0.5\linewidth}
-		\centering
-		\includegraphics[width=7cm]{fig/koil_diode_bi.pdf}
-		\caption{3号機アンテナの写真}
-		\label{fig:koil_diode_bi}
-	\end{minipage}
-\end{figure}
 
 \subsection{アンテナ}
 
 今回は合計で3つのアンテナを用意した(1号機と2号機は製作したもの、3号機は既製品)。
 それぞれの仕様を\wtab{ant}に示す。
-また、それぞれの写真を\wfig{1}，\wfig{2}，\wfig{3}に示す。
+また、それぞれの写真を\wfig{1}、\wfig{2}、\wfig{3}に示す。
 
 \begin{table}[h]
 	\centering
@@ -85,13 +60,14 @@
 	\end{minipage}
 \end{figure}
 
+まず、受信できる周波数を特定するために、それぞれのインダクタンスを測定した。
 それぞれのインダクタンスの測定は、\wfig{inda}のような回路を用いて行った。
 周波数を変更させて、共振回路間の電圧を測定し、分圧則より共振周波数の場合はインピーダンスがほぼ無限になるため、5Vの電圧が測定できる。
 5Vになった周波数から、\weq{resonance}と共振回路内のセラミックコンデンサ150 pFの値を用いて、インダクタンスを計算した。
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{fig/inda.pdf}
+	\includegraphics[width=8cm]{fig/inda.pdf}
 	\caption{インダクタンス測定回路}
 	\label{fig:inda}
 \end{figure}
@@ -103,16 +79,16 @@
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{fig/1_kyo.pdf}
-	\caption{インダクタンス測定回路の結果}
+	\caption{インダクタンス測定回路の共振}
 	\label{fig:inda2}
 \end{figure}
 
 \wfig{inda2}の結果から、\wtab{ant2}のように、インダクタンスと受信できる周波数を計算した。
-受信できる周波数は、4 pF \(\sim\) 260 pFのバリアブルコンデンサを用いることを想定している。
+受信できる周波数は、\wfig{radio-circuit}の4 pF \(\sim\) 260 pFのバリアブルコンデンサ（CBM-113B-1C4）を用いることを想定している。
 
 \begin{table}[h]
 	\centering
-	\caption{インダクタンス測定回路}
+	\caption{インダクタンス測定回路の結果}
 	\label{tab:ant2}
 	\begin{tabular}{ccccc} \hline
 		名称  & 最大電圧[V] & 共振周波数[kHz] & インダクタンス[\(\upmu\)H] & 受信できる周波数[kHz]           \\ \hline
@@ -128,6 +104,8 @@
 	\item 1号機は1242 kHzのニッポン放送ははっきり聞こえるが
 \end{itemize}
 
+
+
 \subsubsection{受信強度}
 アンテナをラジオ回路に接続したときの，クリスタルイヤホンからの音量によって，受信強度を評価した。一号機ではかすかに聞こえる(内容の把握はまれに可能である)ほどであり，二号機，三号機ではほとんど聞こえなかった。
 \subsubsection{指向性}
@@ -137,6 +115,39 @@
 ラジオ回路の評価は難航した。回路にかかる電圧は微小信号であり，オシロスコープや電圧計での測定ができない。そのため，アンプで増幅してから評価するか，やはり出力された音声による評価を行う他なかった。
 
 ラジオ回路に対し我々が行った評価は，アンテナ→ラジオ回路→スピーカーという風に出力したときの音声に含まれるノイズを
+
+\subsection{検波}
+
+\wfig{koil}に、ループアンテナアンテナから取り出された電圧を示す。
+\wfig{koil_diode}に、\wfig{koil}から取り出された電圧を検波回路で検波された電圧を示す。
+\wfig{koil_diode_bi}に、\wfig{koil_diode}からカップリングコンデンサを通して取り出された電圧を示す。
+関係ないかもしれないが、\wfig{koil}\wfig{koil_diode}\wfig{koil_diode_bi}すべてオシロスコープの分解能の影響で決まった値しか検出できなかった。
+\wfig{koil}より、ノイズと思われる部分を含めないで、最大約0.02[V]の電圧が観測された。
+\wfig{koil_diode}より、逆電圧がほとんどないため、ゲルマニウムダイオードの整流作用が働いていることが確認できる。
+また、\wfig{koil_diode_bi}より、\wfig{koil_diode}の直流成分（0.01[V]ぐらい）がカットされていることがわかる。
+そのため、検波回路は正常に動作していると考えられる。
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{fig/koil.pdf}
+	\caption{ループアンテナから取り出された電圧}
+	\label{fig:koil}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{minipage}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width=7cm]{fig/koil_diode.pdf}
+		\caption{検波回路で検波された電圧}
+		\label{fig:koil_diode}
+	\end{minipage}
+	\begin{minipage}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width=7cm]{fig/koil_diode_bi.pdf}
+		\caption{カップリングコンデンサを通したときの電圧}
+		\label{fig:koil_diode_bi}
+	\end{minipage}
+\end{figure}
 
 \subsection{アンプ}
 
