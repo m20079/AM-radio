@@ -494,7 +494,7 @@ class Graph:
         print(f"set label {self.out_file}")
         self.set_axis()
         print(f"set axis {self.out_file}")
-        # self.set_legend()
+        self.set_legend()
         print(f"set legend {self.out_file}")
         self.save()
         print(f"save {self.out_file}")

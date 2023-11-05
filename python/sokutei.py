@@ -36,59 +36,93 @@ make_graph(
     multiprocessing=False,
     graphs=[
         Graph(
-            f"../{folder}/koil.{pdf}",
-            x_label=[r"Time $\mathrm{[s]}$"],
+            f"../{folder}/min_max.{pdf}",
+            x_label=[r"Frequency $\mathrm{[kHz]}$"],
             y1_label=[
                 r"Voltage $\mathrm{[V]}$",
             ],
-            x_axis=Axis(minor=0.002),
-            y1_axis=Axis(lim=Lim(min=-0.049, max=0.049), minor=0.001),
+            x_axis=Axis(lim=Lim(min=380, max=1620), minor=20),
+            y1_axis=Axis(minor=0.02),
             data=[
-                Data(
-                    x_col="P",
-                    y_col="Q",
-                    sheet=sheet4,
-                    marker=marker1,
-                    label=r"185.193 times",
-                ),
+                Data(x_col="A", y_col="C", sheet=sheet4, marker=marker3, label="min"),
+                Data(x_col="F", y_col="H", sheet=sheet4, marker=marker2, label="max"),
             ],
         ),
-        Graph(
-            f"../{folder}/koil_diode.{pdf}",
-            x_label=[r"Time $\mathrm{[s]}$"],
-            y1_label=[
-                r"Voltage $\mathrm{[V]}$",
-            ],
-            x_axis=Axis(minor=0.002),
-            y1_axis=Axis(lim=Lim(min=-0.049, max=0.049), minor=0.001),
-            data=[
-                Data(
-                    x_col="T",
-                    y_col="U",
-                    sheet=sheet4,
-                    marker=marker1,
-                    label=r"185.193 times",
-                ),
-            ],
-        ),
-        Graph(
-            f"../{folder}/koil_diode_bi.{pdf}",
-            x_label=[r"Time $\mathrm{[s]}$"],
-            y1_label=[
-                r"Voltage $\mathrm{[V]}$",
-            ],
-            x_axis=Axis(minor=0.002),
-            y1_axis=Axis(lim=Lim(min=-0.049, max=0.049), minor=0.001),
-            data=[
-                Data(
-                    x_col="Z",
-                    y_col="AA",
-                    sheet=sheet4,
-                    marker=marker1,
-                    label=r"185.193 times",
-                ),
-            ],
-        ),
+        # Graph(
+        #     f"../{folder}/resi.{pdf}",
+        #     x_label=[r"Resistance $\mathrm{[\Omega]}$"],
+        #     y1_label=[
+        #         r"Voltage $\mathrm{[V]}$",
+        #     ],
+        #     x_axis=Axis(minor=200, major=[10000, 8000, 6000, 4000, 2000, 0]),
+        #     y1_axis=Axis(
+        #         minor=0.02,
+        #         major=[-0.2, 0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8],
+        #     ),
+        #     data=[
+        #         Data(
+        #             x_col="L",
+        #             y_col="N",
+        #             sheet=sheet4,
+        #             marker=marker2,
+        #             label=r"185.193 times",
+        #         ),
+        #     ],
+        # ),
+        # Graph(
+        #     f"../{folder}/koil.{pdf}",
+        #     x_label=[r"Time $\mathrm{[s]}$"],
+        #     y1_label=[
+        #         r"Voltage $\mathrm{[V]}$",
+        #     ],
+        #     x_axis=Axis(minor=0.002),
+        #     y1_axis=Axis(lim=Lim(min=-0.049, max=0.049), minor=0.001),
+        #     data=[
+        #         Data(
+        #             x_col="P",
+        #             y_col="Q",
+        #             sheet=sheet4,
+        #             marker=marker1,
+        #             label=r"185.193 times",
+        #         ),
+        #     ],
+        # ),
+        # Graph(
+        #     f"../{folder}/koil_diode.{pdf}",
+        #     x_label=[r"Time $\mathrm{[s]}$"],
+        #     y1_label=[
+        #         r"Voltage $\mathrm{[V]}$",
+        #     ],
+        #     x_axis=Axis(minor=0.002),
+        #     y1_axis=Axis(lim=Lim(min=-0.049, max=0.049), minor=0.001),
+        #     data=[
+        #         Data(
+        #             x_col="T",
+        #             y_col="U",
+        #             sheet=sheet4,
+        #             marker=marker1,
+        #             label=r"185.193 times",
+        #         ),
+        #     ],
+        # ),
+        # Graph(
+        #     f"../{folder}/koil_diode_bi.{pdf}",
+        #     x_label=[r"Time $\mathrm{[s]}$"],
+        #     y1_label=[
+        #         r"Voltage $\mathrm{[V]}$",
+        #     ],
+        #     x_axis=Axis(minor=0.002),
+        #     y1_axis=Axis(lim=Lim(min=-0.049, max=0.049), minor=0.001),
+        #     data=[
+        #         Data(
+        #             x_col="Z",
+        #             y_col="AA",
+        #             sheet=sheet4,
+        #             marker=marker1,
+        #             label=r"185.193 times",
+        #         ),
+        #     ],
+        # ),
         # Graph(
         #     f"../{folder}/gain.{pdf}",
         #     x_label=[r"Frequency $\mathrm{[Hz]}$"],
