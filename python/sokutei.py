@@ -48,6 +48,19 @@ make_graph(
                 Data(x_col="F", y_col="H", sheet=sheet4, marker=marker2, label="max"),
             ],
         ),
+        Graph(
+            f"../{folder}/min_max2.{pdf}",
+            x_label=[r"Frequency $\mathrm{[kHz]}$"],
+            y1_label=[
+                r"Voltage $\mathrm{[V]}$",
+            ],
+            x_axis=Axis(lim=Lim(min=380, max=1620), minor=20),
+            y1_axis=Axis(minor=0.02),
+            data=[
+                Data(x_col="A", y_col="C", sheet=sheet4, marker=marker3, label="min"),
+                Data(x_col="F", y_col="H", sheet=sheet4, marker=marker2, label="max"),
+            ],
+        ),
         # Graph(
         #     f"../{folder}/resi.{pdf}",
         #     x_label=[r"Resistance $\mathrm{[\Omega]}$"],
