@@ -160,10 +160,10 @@ maxの共振周波数は、Q値が低かったため判断に難しかったが�
 \wtab{ant5}より、受信できる周波数は一号機はほとんど聞くことができて（ラジオの放送局数的に）、二号機は半分ほど聞くことができて、三号機はほとんど聞くことができない（こちらはそもそも同調回路として機能しているのか分からない）。
 特に、NHKなどは全く聞くことができなかった。
 原因として、そもそも電波が届いていないのではないかと考えた。
-ものすごく簡単なレーダー方程式（反射とかは無視）\weq{radar}を用いて電波密度を計算する。
+ものすごく簡単なレーダー方程式（反射とかは無視、アンテナゲインも無視）\weq{radar}を用いて電波密度を計算する。
 
 \begin{align}
-	\frac{P_t}{4 \pi R^2} \label{eq:radar}
+	電力密度 = \frac{P_t}{4 \pi R^2} \label{eq:radar}
 \end{align}
 
 計算した結果と、教室から送信局までの方角を\wtab{aaa}に示す。
@@ -301,7 +301,7 @@ Highest rangeが人間が聞こえる周波数の最高値（20000[Hz]）であ�
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{fig/resi.pdf}
-	\caption{アンプのゲイン線図}
+	\caption{音量調節が出来ているか}
 	\label{fig:resi}
 \end{figure}
 
