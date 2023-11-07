@@ -4,7 +4,7 @@
 
 \begin{document}
 
-\section{失敗点・言い訳}
+\section{失敗点・言い訳・改善・頑張ったからほめてほしいところ}
 
 \subsection{アンテナの作成}
 
@@ -32,19 +32,34 @@
 その時、竹中が開封したときは、きれいな導線だったから引っ張ればもとに戻ると勘違いしてしまい、他の二人がそれは良くないと言っていたが、気づいたときには、元には戻せないほど絡まってしまった。
 次からは、
 
+\subsection{フィルタ回路の作成}
+
+角張くんの高い音と低い音をカットするローパスフィルターとハイパスフィルターの回路を参考にして、ノイズや発振をカットしてくれるアクティブフィルタを作成してくれる予定だった。
+しかし、フェムトファラッド単位のコンデンサが必要になったりして作業が難航した。
+何とか頑張って\wfig{filter}のような回路を作成してくれた。
+しかし、電源を用いて回路を作動させたところ、電源が短絡してしまっていた。
+結局のところ原因がわからず、フィルタ回路を作成することはできなかった。
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{use/1.jpg}
+	\caption{フィルタ回路}
+	\label{fig:filter}
+\end{figure}
+
 \subsection{増幅回路の作成}
 
 \begin{figure}[H]
 	\begin{minipage}[b]{0.5\linewidth}
 		\centering
 		\includegraphics[width=8cm]{use/2.jpg}
-		\caption{2号機アンテナの写真}
+		\caption{アンプ一台目}
 		\label{fig:s_2}
 	\end{minipage}
 	\begin{minipage}[b]{0.5\linewidth}
 		\centering
 		\includegraphics[width=8cm]{use/3.jpg}
-		\caption{3号機アンテナの写真}
+		\caption{アンプ二台目}
 		\label{fig:s_3}
 	\end{minipage}
 \end{figure}
@@ -53,13 +68,13 @@
 	\begin{minipage}[b]{0.5\linewidth}
 		\centering
 		\includegraphics[width=8cm]{use/5.jpg}
-		\caption{2号機アンテナの写真}
+		\caption{アンプ三台目}
 		\label{fig:s_4}
 	\end{minipage}
 	\begin{minipage}[b]{0.5\linewidth}
 		\centering
 		\includegraphics[width=8cm]{use/6.jpg}
-		\caption{3号機アンテナの写真}
+		\caption{アンプ四代目になる予定だったもの}
 		\label{fig:s_5}
 	\end{minipage}
 \end{figure}
@@ -73,7 +88,7 @@
 	\end{minipage}
 	\begin{minipage}[b]{0.5\linewidth}
 		\centering
-		\includegraphics[width=8cm]{use/3.jpg}
+		\includegraphics[width=8cm]{use/1.jpg}
 		\caption{3号機アンテナの写真}
 		\label{fig:s_7}
 	\end{minipage}
