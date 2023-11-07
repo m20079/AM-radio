@@ -87,6 +87,9 @@ make_graph(
                     label="max",
                 ),
             ],
+            horizontal_base_line=[
+                BaseLine(value=3.53553, linestyle="--", label="g"),
+            ],
         ),
         Graph(
             f"../{folder}/inda_inda.{pdf}",
