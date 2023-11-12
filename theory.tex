@@ -1,6 +1,6 @@
 \documentclass[report.tex]{subfiles}
 
-\externaldocument{report}
+% \externaldocument{report}
 
 \begin{document}
 
@@ -69,7 +69,7 @@
 \subsubsection{同調回路}
 
 同調回路は、受信したい周波数の電波を取り出す回路である。
-同調回路を用いらないと、\wfig{notuse}のように、受信したい周波数の電波以外の電波も取り出してしまう。
+同調回路を用いないと、\wfig{notuse}のように、受信したい周波数の電波以外の電波も取り出してしまう。
 しかし、同調回路を用いると、\wfig{use}のように、受信したい特定の周波数の電波のみを取り出すことができる。
 
 \begin{figure}[H]
@@ -103,6 +103,22 @@
 	f           & = \frac{1}{2 \pi \sqrt{LC}} \label{eq:resonance}
 \end{align}
 
+また，コイルとコンデンサの抵抗成分を考慮した場合の並列回路のアドミタンスは，\weq{impedance2}のようになる。
+
+\begin{align}
+	\dot{Y} & = \frac{R_1}{{R_1}^2+ {\omega L}^2} + \frac{1}{R_2} + j(\omega C - \frac{\omega L}{{R_1}^2+ {\omega L}^2})\label{eq:impedance2}
+\end{align}
+
+ここで、$\omega C - \frac{\omega L}{{R_1}^2+ {\omega L}^2} = 0$とすると、回路のアドミタンスの虚成分(サセプタンス)は0となる。
+この時の周波数\(f\rm{[Hz]}\)は\weq{kyousin2}\(\sim\)\weq{kyousin}のようにして決定することが出来る。
+
+\begin{align}
+	\omega C - \frac{\omega L}{{R_1}^2+ {\omega L}^2} & = 0 \label{eq:kyousin}                                                           \\
+	\omega ^2                                         & = \frac{L - {CR_1}^2}{CL^2}                                                      \\
+	f                                                 & = \frac{1}{2 \pi} \sqrt{\frac{1}{CL} - {\frac{{R_1}^2}{L^2}}}\label{eq:kyousin2}
+\end{align}
+
+$R_1 = 0$としたとき，\weq{kyousin}は\weq{resonance}に一致することから，正しい議論であることが分かる。
 \wfig{tuning-circuit}では、ループアンテナのインダクタンス\(L\)を変更することができない。
 そのため、バリアブルコンデンサのキャパシタンス\(C\)を変更することで、受信したい周波数を選択する。
 
@@ -123,8 +139,13 @@
 	\end{minipage}
 \end{figure}
 
-めんどくさい
+\subsubsection{Q値}
+Q値とは，同調回路において，共振周波数以外で信号の振幅がどれほど小さいかを表す値である。これが高い程，性能のよい同調回路であると言える。Q値は，\weq{Q}で与えられる。
 
+\begin{align}
+	Q値 =\frac{A_0}{\omega_2 - \omega_1}
+\end{align}
+ここで，$A_0$は$\omega_0$における振幅，$\omega_1，\omega_2$は$\frac{A_0}{\sqrt{2}}$の振幅を取る周波数である。($\omega_1<\omega_2$) \label{eq:Q}
 \subsubsection{選択する周波数}
 
 \wfig{map}にAMラジオの送信所を地図にそれぞれ示したものを示す。
