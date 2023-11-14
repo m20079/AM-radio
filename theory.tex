@@ -33,7 +33,7 @@
 \subsubsection{ループアンテナ}
 
 \wfig{radio-circuit}で用いられているアンテナは、エナメル線をループ状に巻いたループアンテナである。
-電波の磁界成分がループアンテナを貫くと誘導起電力（誘導電圧）を引き起こし、電流が流れる。
+電波の磁界成分がループアンテナを貫くと誘導起電力（誘導電圧）を引き起こし、電流が流れる\cite{ラジオ}。
 この電流を誘導電流という。
 ループアンテナの誘導起電力の大きさは、\weq{induced-voltage}より求めることが出来る。
 ここで、\(N[\rm{turn}]\)はループアンテナの巻数、\(\Phi[\rm{Wb}]\)は磁束、\(V[\rm{V}]\)が誘導起電力である。
@@ -103,7 +103,7 @@
 	f           & = \frac{1}{2 \pi \sqrt{LC}} \label{eq:resonance}
 \end{align}
 
-また，コイルとコンデンサの抵抗成分を考慮した場合の並列回路のアドミタンスは，\weq{impedance2}のようになる。
+また、コイルとコンデンサの抵抗成分を考慮した場合の並列回路のアドミタンスは、\weq{impedance2}のようになる。
 
 \begin{align}
 	\dot{Y} & = \frac{R_1}{{R_1}^2+ {\omega L}^2} + \frac{1}{R_2} + j(\omega C - \frac{\omega L}{{R_1}^2+ {\omega L}^2})\label{eq:impedance2}
@@ -118,7 +118,7 @@
 	f                                                 & = \frac{1}{2 \pi} \sqrt{\frac{1}{CL} - {\frac{{R_1}^2}{L^2}}}\label{eq:kyousin2}
 \end{align}
 
-$R_1 = 0$としたとき，\weq{kyousin}は\weq{resonance}に一致することから，正しい議論であることが分かる。
+$R_1 = 0$としたとき、\weq{kyousin}は\weq{resonance}に一致することから、正しい議論であることが分かる。
 \wfig{tuning-circuit}では、ループアンテナのインダクタンス\(L\)を変更することができない。
 そのため、バリアブルコンデンサのキャパシタンス\(C\)を変更することで、受信したい周波数を選択する。
 
@@ -140,12 +140,14 @@ $R_1 = 0$としたとき，\weq{kyousin}は\weq{resonance}に一致すること�
 \end{figure}
 
 \subsubsection{Q値}
-Q値とは，同調回路において，共振周波数以外で信号の振幅がどれほど小さいかを表す値である。これが高い程，性能のよい同調回路であると言える。Q値は，\weq{Q}で与えられる。
+
+Q値とは、同調回路において、共振周波数以外で信号の振幅がどれほど小さいかを表す値である。
+れが高い程、性能のよい同調回路であると言える。Q値は、\weq{Q}で与えられる\cite{ノート}。
 
 \begin{align}
-	Q値 =\frac{A_0}{\omega_2 - \omega_1}
+	Q値 =\frac{\omega_0}{\omega_2 - \omega_1}
 \end{align}
-ここで，$A_0$は$\omega_0$における振幅，$\omega_1，\omega_2$は$\frac{A_0}{\sqrt{2}}$の振幅を取る周波数である。($\omega_1<\omega_2$) \label{eq:Q}
+ここで、$A_0$は$\omega_0$における振幅、$\omega_1、\omega_2$は$\frac{A_0}{\sqrt{2}}$の振幅を取る周波数である。($\omega_1<\omega_2$) \label{eq:Q}
 \subsubsection{選択する周波数}
 
 \wfig{map}にAMラジオの送信所を地図にそれぞれ示したものを示す。
