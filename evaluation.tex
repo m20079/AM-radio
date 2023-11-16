@@ -6,7 +6,7 @@
 
 \section{性能評価}
 
-今回製作できたラジオは，以下のような仕様となった。
+今回製作できたラジオは、以下のような仕様となった。
 
 \begin{enumerate}
 	\item クリスタルイヤホンを用いてアンプなしでラジオを聞くことができた。
@@ -112,25 +112,22 @@ LCRメータが機能しなかったため、それぞれのインダクタン�
 	\label{fig:inda3}
 \end{figure}
 
-\wfig{inda4}に、\wfig{inda3}の測定結果を示す。また\wtab{Q}に，各条件でのQ値を示す。2号機つまみ最大に関しては，測定点が足りずQ値を算出できなかった。
-正規化Q値は\weq{sQ}より算出した。
+\wfig{inda4}に、\wfig{inda3}の測定結果を示す。
+また\wtab{Q}に、各条件でのQ値を示す。
+2号機つまみ最大に関しては、測定点が足りずQ値を算出できなかった。
 
 \begin{table}[H]
 	\centering
 	\caption{共振回路のQ値(max:つまみ最大,min:つまみ最小)}
 	\label{tab:Q}
 	\begin{tabular}{ccccccc} \hline
-		     & \(A_0\) & \(f_0\) & \(\omega_1\) & \(\omega_2\) & Q値     & 正規化Q値  \\ \hline
-		1min & 4.68    & 495     & 450          & 550          & 0.0468 & 23.166 \\
-		1max & 3.54    & 1350    & 955          & 1725         & 0.0046 & 6.206  \\
-		2min & 4.89    & 300     & 251          & 358          & 0.0457 & 13.710 \\
-		2max & 3.04    & 890     & -            & -            & -      & -      \\ \hline
+		     & 最大電圧[V] & 最大電圧/\(\sqrt{2}\) & 共振周波数\(\omega_0\) & \(\omega_1\) & \(\omega_2\) & Q値    \\ \hline
+		1min & 4.71    & 3.33              & 495               & 447          & 555          & 4.583 \\
+		1max & 4.64    & 3.28              & 1410              & 1100         & 2050         & 1.484 \\
+		2min & 4.89    & 3.46              & 305               & 250          & 360          & 2.773 \\
+		2max & 4.30    & 3.04              & 890               & 530          & 1400         & 1.023 \\ \hline
 	\end{tabular}
 \end{table}
-
-\begin{align}
-	正規化Q値 =Q値/f_0 \label{eq:sQ}
-\end{align}
 
 バリアブルコンデンサのつまみを最小（min）にした場合は、Q値が高かった。
 しかし、バリアブルコンデンサのつまみを最大（max）にした場合は、Q値が低かった。
@@ -139,14 +136,14 @@ LCRメータが機能しなかったため、それぞれのインダクタン�
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=8cm]{fig/min_max.pdf}
+	\includegraphics[width=8cm]{fig/min_max2.pdf}
 	\caption{バリアブルコンデンサ測定回路の共振}
 	\label{fig:inda4}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=8cm]{fig/min_max2.pdf}
+	\includegraphics[width=8cm]{fig/min_max2_v2.pdf}
 	\caption{バリアブルコンデンサ測定回路の共振}
 	\label{fig:inda5}
 \end{figure}

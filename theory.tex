@@ -66,7 +66,7 @@
 	V = -\mu N S \frac{dH}{dt} \label{eq:induced-voltage2}
 \end{align}
 
-\subsubsection{同調回路}
+\subsubsection{同調回路（共振回路）}
 
 同調回路は、受信したい周波数の電波を取り出す回路である。
 同調回路を用いないと、\wfig{notuse}のように、受信したい周波数の電波以外の電波も取り出してしまう。
@@ -93,14 +93,14 @@
 Q値とは、同調回路において、共振周波数以外で信号の振幅がどれほど小さいかを表す値である。
 Q値が高いほど性能のよい同調回路であると言える。
 Q値は\weq{Q値}で与えられる\cite{ノート}。
-ここで、\(\omega_0\)は共振周波数、\(\omega_1\)と\(\omega_2\)は共振周波数時の振幅を\(\sqrt{2}\)で割った値の周波数である。
+ここで、\(\omega_0\)は共振周波数、\(\omega_1\)と\(\omega_2\)は共振周波数時の振幅を\(\sqrt{2}\)で割った値の周波数である（\(\omega_2 > \omega_1\)）。
 
 \begin{align}
 	Q値 =\frac{\omega_0}{\omega_2 - \omega_1} \label{eq:Q値}
 \end{align}
 
 \wfig{radio-circuit}の同調回路は、ループアンテナとバリアブルコンデンサを並列につなげている。
-この同調回路の共振周波数、Q値を考えるために\wfig{kyo}のような回路を考える。
+この同調回路の共振周波数、Q値を考えるために\wfig{kyo}のような理想的な同調回路を考える。
 この並列回路のインピーダンス\(\dot{Z}\)は、\weq{impedance}のようになる。
 
 \begin{figure}[H]
@@ -124,11 +124,11 @@ Q値は\weq{Q値}で与えられる\cite{ノート}。
 \end{align}
 
 この回路のQ値は\(\infty\)である。
-また、\wfig{kyo2}のようにコイルとコンデンサの抵抗成分を考慮した場合の並列回路を考えてみる。
+また、\wfig{kyo2}のようにコイルとコンデンサの抵抗成分を考慮した現実的な同調回路を考えてみる。
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=9cm]{fig/kyo2.pdf}
+	\includegraphics[width=10cm]{fig/kyo2.pdf}
 	\caption{現実的な同調回路}
 	\label{fig:kyo2}
 \end{figure}
@@ -215,13 +215,13 @@ $R_1 = 0$としたとき、\weq{kyousin}は\weq{resonance}に一致すること�
 \begin{figure}[H]
 	\begin{minipage}[b]{0.5\columnwidth}
 		\centering
-		\includegraphics[width=8cm]{fig/5V.pdf}
+		\includegraphics[width=7cm]{fig/5V.pdf}
 		\caption{搬送波}
 		\label{fig:5V}
 	\end{minipage}
 	\begin{minipage}[b]{0.5\columnwidth}
 		\centering
-		\includegraphics[width=8cm]{fig/3V.pdf}
+		\includegraphics[width=7cm]{fig/3V.pdf}
 		\caption{信号波}
 		\label{fig:3V}
 	\end{minipage}
@@ -235,7 +235,7 @@ $R_1 = 0$としたとき、\weq{kyousin}は\weq{resonance}に一致すること�
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=8cm]{fig/Wave.pdf}
+	\includegraphics[width=7cm]{fig/Wave.pdf}
 	\caption{電波から受信された信号（振幅変調波）}
 	\label{fig:wave}
 \end{figure}
@@ -245,7 +245,7 @@ $R_1 = 0$としたとき、\weq{kyousin}は\weq{resonance}に一致すること�
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=8cm]{fig/diode.pdf}
+	\includegraphics[width=7cm]{fig/diode.pdf}
 	\caption{ダイオードで逆方向電圧を取り除いた信号}
 	\label{fig:diode}
 \end{figure}
@@ -258,7 +258,7 @@ $R_1 = 0$としたとき、\weq{kyousin}は\weq{resonance}に一致すること�
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=8cm]{fig/capa.pdf}
+	\includegraphics[width=7cm]{fig/capa.pdf}
 	\caption{キャパシタンスで搬送波部分を取り除いた信号}
 	\label{fig:capa}
 \end{figure}
