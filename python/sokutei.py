@@ -19,6 +19,8 @@ sheet3 = Sheet("./../data/data.xlsx", "k", skiprows=1)
 
 sheet4 = Sheet("./../data/data.xlsx", "valiable", skiprows=1)
 
+sheet5 = Sheet("./../data/data.xlsx", "valiable2", skiprows=1)
+
 marker1 = Marker(marker="o", markersize=4, color="r", ls="None")
 
 marker2 = Marker(marker="D", markersize=4, color="b", ls="None")
@@ -35,6 +37,62 @@ folder = "fig"
 make_graph(
     multiprocessing=False,
     graphs=[
+        Graph(
+            f"../{folder}/min_max_v2.{pdf}",
+            x_label=[r"Frequency $\mathrm{[kHz]}$"],
+            y1_label=[
+                r"Voltage $\mathrm{[V]}$",
+            ],
+            # x_axis=Axis(lim=Lim(min=150, max=1950), minor=20),
+            y1_axis=Axis(lim=Lim(-0.2, 5.2), minor=0.1),
+            data=[
+                Data(
+                    x_col="A",
+                    y_col="C",
+                    sheet=sheet5,
+                    marker=marker3,
+                    label="min",
+                ),
+                Data(
+                    x_col="F",
+                    y_col="H",
+                    sheet=sheet5,
+                    marker=marker2,
+                    label="max",
+                ),
+            ],
+            horizontal_base_line=[
+                BaseLine(value=3.53553, linestyle="--", label="g"),
+            ],
+        ),
+        Graph(
+            f"../{folder}/min_max2_v2.{pdf}",
+            x_label=[r"Frequency $\mathrm{[kHz]}$"],
+            y1_label=[
+                r"Voltage $\mathrm{[V]}$",
+            ],
+            # x_axis=Axis(lim=Lim(min=100, max=1400), minor=20),
+            y1_axis=Axis(lim=Lim(-0.2, 5.2), minor=0.1),
+            data=[
+                Data(
+                    x_col="AH",
+                    y_col="AJ",
+                    sheet=sheet5,
+                    marker=marker3,
+                    label="min",
+                ),
+                Data(
+                    x_col="AL",
+                    y_col="AN",
+                    sheet=sheet5,
+                    marker=marker2,
+                    label="max",
+                ),
+            ],
+            horizontal_base_line=[
+                BaseLine(value=3.53553, linestyle="--", label="g"),
+            ],
+        ),
         Graph(
             f"../{folder}/min_max.{pdf}",
             x_label=[r"Frequency $\mathrm{[kHz]}$"],
