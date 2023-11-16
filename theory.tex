@@ -87,15 +87,35 @@
 	\end{minipage}
 \end{figure}
 
+\subsection{同調回路の評価}
+
+同調回路の評価として、共振周波数とQ値がある。
+Q値とは、同調回路において、共振周波数以外で信号の振幅がどれほど小さいかを表す値である。
+Q値が高いほど性能のよい同調回路であると言える。
+Q値は\weq{Q値}で与えられる\cite{ノート}。
+ここで、\(\omega_0\)は共振周波数、\(\omega_1\)と\(\omega_2\)は共振周波数時の振幅を\(\sqrt{2}\)で割った値の周波数である。
+
+\begin{align}
+	Q値 =\frac{\omega_0}{\omega_2 - \omega_1} \label{eq:Q値}
+\end{align}
+
 \wfig{radio-circuit}の同調回路は、ループアンテナとバリアブルコンデンサを並列につなげている。
-ループアンテナのインダクタンスを\(L\)、バリアブルコンデンサのキャパシタンスを\(C\)とすると、この並列回路のインピーダンス\(\dot{Z}\)は、\weq{impedance}のようになる。
+この同調回路の共振周波数、Q値を考えるために\wfig{kyo}のような回路を考える。
+この並列回路のインピーダンス\(\dot{Z}\)は、\weq{impedance}のようになる。
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{fig/kyo.pdf}
+	\caption{理想的な同調回路}
+	\label{fig:kyo}
+\end{figure}
 
 \begin{align}
 	\dot{Z} & = \frac{j \omega L \times \frac{1}{j \omega C}}{j \omega L + \frac{1}{j \omega C}} = \frac{j \omega L}{1 - \omega^2 LC} \label{eq:impedance}
 \end{align}
 
 ここで、$\omega^2 LC = 1$と仮定すると、インピーダンス\(\dot{Z}\)は無限大となる。
-この時の周波数\(f\rm{[Hz]}\)は\weq{resonance2}\(\sim\)\weq{resonance}のようにして決定することが出来る。
+この時の周波数（共振周波数）\(f\rm{[Hz]}\)は\weq{resonance2}\(\sim\)\weq{resonance}のようにして決定することが出来る。
 
 \begin{align}
 	\omega^2 LC & = 1                            \label{eq:resonance2} \\
@@ -103,14 +123,24 @@
 	f           & = \frac{1}{2 \pi \sqrt{LC}} \label{eq:resonance}
 \end{align}
 
-また、コイルとコンデンサの抵抗成分を考慮した場合の並列回路のアドミタンスは、\weq{impedance2}のようになる。
+この回路のQ値は\(\infty\)である。
+また、\wfig{kyo2}のようにコイルとコンデンサの抵抗成分を考慮した場合の並列回路を考えてみる。
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=9cm]{fig/kyo2.pdf}
+	\caption{現実的な同調回路}
+	\label{fig:kyo2}
+\end{figure}
+
+\wfig{kyo2}のアドミタンスは、\weq{impedance2}のようになる。
 
 \begin{align}
 	\dot{Y} & = \frac{R_1}{{R_1}^2+ {\omega L}^2} + \frac{1}{R_2} + j(\omega C - \frac{\omega L}{{R_1}^2+ {\omega L}^2})\label{eq:impedance2}
 \end{align}
 
 ここで、$\omega C - \frac{\omega L}{{R_1}^2+ {\omega L}^2} = 0$とすると、回路のアドミタンスの虚成分(サセプタンス)は0となる。
-この時の周波数\(f\rm{[Hz]}\)は\weq{kyousin2}\(\sim\)\weq{kyousin}のようにして決定することが出来る。
+この時の周波数（共振周波数）\(f\rm{[Hz]}\)は\weq{kyousin2}\(\sim\)\weq{kyousin}のようにして決定することが出来る。
 
 \begin{align}
 	\omega C - \frac{\omega L}{{R_1}^2+ {\omega L}^2} & = 0 \label{eq:kyousin}                                                           \\
@@ -119,36 +149,16 @@
 \end{align}
 
 $R_1 = 0$としたとき、\weq{kyousin}は\weq{resonance}に一致することから、正しい議論であることが分かる。
+この回路のQ値は\weq{Q値2}のようになる。
+\weq{Q値2}より、\(R_2\)が高い、\(R_1\)が低いほどQ値が高くなることが分かる。
+
+\begin{align}
+	Q = \frac{\omega_0 L R_2}{R_2R_1 + (\omega_0 L)^2} = \frac{\omega_0 L}{R1 + \frac{(\omega_0 L)^2}{R_2}} \label{eq:Q値2}
+\end{align}
+
 \wfig{tuning-circuit}では、ループアンテナのインダクタンス\(L\)を変更することができない。
 そのため、バリアブルコンデンサのキャパシタンス\(C\)を変更することで、受信したい周波数を選択する。
 
-\subsubsection{同調回路の性能}
-
-\begin{figure}[H]
-	\begin{minipage}[b]{0.4\linewidth}
-		\centering
-		\includegraphics[width=7cm]{fig/kyo.pdf}
-		\caption{理想的な同調回路}
-		\label{fig:kyo}
-	\end{minipage}
-	\begin{minipage}[b]{0.6\linewidth}
-		\centering
-		\includegraphics[width=9cm]{fig/kyo2.pdf}
-		\caption{現実的な同調回路}
-		\label{fig:kyo2}
-	\end{minipage}
-\end{figure}
-
-\subsubsection{Q値}
-
-Q値とは、同調回路において、共振周波数以外で信号の振幅がどれほど小さいかを表す値である。
-Q値が高いほど性能のよい同調回路であると言える。
-Q値は、\weq{Q}で与えられる\cite{ノート}。
-
-\begin{align}
-	Q値 =\frac{\omega_0}{\omega_2 - \omega_1}
-\end{align}
-ここで、$A_0$は$\omega_0$における振幅、$\omega_1、\omega_2$は$\frac{A_0}{\sqrt{2}}$の振幅を取る周波数である。($\omega_1<\omega_2$) \label{eq:Q}
 \subsubsection{選択する周波数}
 
 \wfig{map}にAMラジオの送信所を地図にそれぞれ示したものを示す。
@@ -179,6 +189,16 @@ Q値は、\weq{Q}で与えられる\cite{ノート}。
 		ラジオ日本  & 1422     & 50       & 約7.8        & 緑色（6）     \\ \hline
 	\end{tabular}
 \end{table}
+
+\subsubsection{レーダー方程式}
+
+レーダー方程式（反射とかは無視、アンテナゲインも無視、簡易的なやつ）を\weq{radar}に示す。
+\weq{radar}を用いると電力密度を計算することができる。
+ここで、\(R\)は送信場所から受信場所までの距離、\(P_t\)は送信電力である。
+
+\begin{align}
+	電力密度 = \frac{P_t}{4 \pi R^2} \label{eq:radar}
+\end{align}
 
 \subsubsection{検波回路}
 

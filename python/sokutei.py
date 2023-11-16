@@ -1,3 +1,4 @@
+import numpy as np
 from make_graph import (
     make_graph,
     Graph,
@@ -43,7 +44,11 @@ make_graph(
             y1_label=[
                 r"Voltage $\mathrm{[V]}$",
             ],
-            # x_axis=Axis(lim=Lim(min=150, max=1950), minor=20),
+            x_axis=Axis(
+                minor=40,
+                major=np.arange(200, 2201, 400),
+                lim=Lim(min=150, max=2250),
+            ),
             y1_axis=Axis(lim=Lim(-0.2, 5.2), minor=0.1),
             data=[
                 Data(
@@ -62,7 +67,8 @@ make_graph(
                 ),
             ],
             horizontal_base_line=[
-                BaseLine(value=3.53553, linestyle="--", label="g"),
+                BaseLine(value=3.33, linestyle="--", label=r"min/$\sqrt{2}$"),
+                BaseLine(value=3.28, linestyle="-.", label=r"max/$\sqrt{2}$"),
             ],
         ),
         Graph(
@@ -71,7 +77,11 @@ make_graph(
             y1_label=[
                 r"Voltage $\mathrm{[V]}$",
             ],
-            # x_axis=Axis(lim=Lim(min=100, max=1400), minor=20),
+            x_axis=Axis(
+                minor=40,
+                major=np.arange(200, 1501, 200),
+                lim=Lim(min=100, max=1500),
+            ),
             y1_axis=Axis(lim=Lim(-0.2, 5.2), minor=0.1),
             data=[
                 Data(
@@ -90,7 +100,8 @@ make_graph(
                 ),
             ],
             horizontal_base_line=[
-                BaseLine(value=3.53553, linestyle="--", label="g"),
+                BaseLine(value=3.459, linestyle="--", label=r"min/$\sqrt{2}$"),
+                BaseLine(value=3.03985, linestyle="-.", label=r"max/$\sqrt{2}$"),
             ],
         ),
         Graph(
@@ -117,9 +128,6 @@ make_graph(
                     label="max",
                 ),
             ],
-            horizontal_base_line=[
-                BaseLine(value=3.53553, linestyle="--", label="g"),
-            ],
         ),
         Graph(
             f"../{folder}/min_max2.{pdf}",
@@ -144,9 +152,6 @@ make_graph(
                     marker=marker2,
                     label="max",
                 ),
-            ],
-            horizontal_base_line=[
-                BaseLine(value=3.53553, linestyle="--", label="g"),
             ],
         ),
         Graph(
