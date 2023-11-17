@@ -76,13 +76,13 @@
 	\begin{minipage}[b]{0.5\linewidth}
 		\centering
 		\includegraphics[width=8cm]{fig/diff.pdf}
-		\caption{同調回路を用いらなかった場合}
+		\caption{同調回路を用いなかった場合の受信信号}
 		\label{fig:notuse}
 	\end{minipage}
 	\begin{minipage}[b]{0.5\linewidth}
 		\centering
 		\includegraphics[width=8cm]{fig/diff2.pdf}
-		\caption{同調回路を用いた場合}
+		\caption{同調回路を用いた場合の受信信号}
 		\label{fig:use}
 	\end{minipage}
 \end{figure}
@@ -93,7 +93,7 @@
 Q値とは、同調回路において、共振周波数以外で信号の振幅がどれほど小さいかを表す値である。
 Q値が高いほど性能のよい同調回路であると言える。
 Q値は\weq{Q値}で与えられる\cite{ノート}。
-ここで、\(\omega_0\)は共振周波数、\(\omega_1\)と\(\omega_2\)は共振周波数時の振幅を\(\sqrt{2}\)で割った値の周波数である（\(\omega_2 > \omega_1\)）。
+ここで、\(\omega_0\)は共振周波数、\(\omega_1\)と\(\omega_2\)は，振幅に共振周波数時の振幅を\(\sqrt{2}\)で割った値を取るときの周波数である（\(\omega_2 > \omega_1\)）。
 
 \begin{align}
 	Q値 =\frac{\omega_0}{\omega_2 - \omega_1} \label{eq:Q値}
@@ -208,7 +208,7 @@ $R_1 = 0$としたとき、\weq{kyousin}は\weq{resonance}に一致すること�
 
 \subsubsection{レーダー方程式}
 
-レーダー方程式（反射とかは無視、アンテナゲインも無視、簡易的なやつ）を\weq{radar}に示す。
+レーダー方程式を\weq{radar}に示す。なおこれは，反射やアンテナゲインを考慮していない簡易的なものである。
 \weq{radar}を用いると電力密度を計算することができる。
 ここで、\(R\)は送信場所から受信場所までの距離、\(P_t\)は送信電力である。
 
@@ -219,7 +219,7 @@ $R_1 = 0$としたとき、\weq{kyousin}は\weq{resonance}に一致すること�
 \subsubsection{検波回路}
 
 検波回路は、電波から受け取った信号から音声信号を取り出す回路である。
-今回作ったラジオは、振幅変調波（AM）を受信する回路である。
+今回作ったAMラジオが受信するのは、振幅変調波(AM波)である。
 振幅変調波は、\wfig{5V}のような搬送波と、\wfig{3V}のような信号波を用いて、\wfig{wave}のような波を電波として送信される。
 仮に、搬送波\(v_c\)の振幅を\(V_{cm}\)、周波数を\(f_c\)、信号波\(v_s\)の振幅を\(V_{sm}\)、周波数を\(f_s\)とすると、それぞれ\weq{v_c}\weq{v_s}のように表すことができる\cite{電子回路}。
 
