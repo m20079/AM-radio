@@ -4,7 +4,7 @@
 
 \begin{document}
 
-\section{性能評価}
+\section{性能評価}\label{sec:性能評価}
 
 今回製作できたラジオは、以下のような仕様となった。
 
@@ -12,17 +12,23 @@
 	\item クリスタルイヤホンを用いてアンプなしでラジオを聞くことができた。
 	\item 4段のアンプを用いてスピーカーを駆動することができた。
 	\item 多少の雑音はあるが、何を話しているのかを聞き取ることができた。
-	\item 一号機は、ニッポン放送とTBSラジオと文化放送を受信することが出来たが複数の放送局が同時に聞こえるようになってしまった。
-	      二号機は、一号機とほぼ同じ性能だが、音が一号機と比べて小さい。
-	      三号機は、全く動作しなかった。
+	\item \begin{itemize}
+		      \item 一号機は、ニッポン放送とTBSラジオと文化放送を受信することが出来たが複数の放送局が同時に聞こえるようになってしまった。
+		      \item 二号機は、一号機とほぼ同じ性能だが、音が一号機と比べて小さい。
+		      \item 三号機は、全く動作しなかった。
+	      \end{itemize}
 	\item 可変抵抗を用いて音量調整を行うことができた。
-	\item 教室（CAD室）内のどこでも受信できたが（TBSラジオと文化放送）、ニッポン放送は窓側でないと聞き取れなかった。
-	\item 一号機は、直径24cm、高さ38cmのループアンテナを用いているため、持ち運びが困難であった。
-	      二号機は、直径6.5cm、高さ16.5cmのループアンテナを用いているため、持ち運びが容易であった。
-	      三号機は、一号機二号機と比べるとかなり小さいが、受信できなかったため使えない。
+	\item TBSラジオと文化放送は教室（CAD室）内のどこでも受信できたが、ニッポン放送は窓側でないと聞き取れなかった。
+	\item \begin{itemize}
+		      \item	一号機は、直径24cm、高さ38cmのループアンテナを用いているため、持ち運びが困難であった。
+		      \item 二号機は、直径6.5cm、高さ16.5cmのループアンテナを用いているため、持ち運びが容易であった。
+		      \item 三号機は、直径1cm、高さ4.2cmのバーアンテナ用いているため、持ち運びがかなり容易であるが、受信できなかったため使えない。
+	      \end{itemize}
 \end{enumerate}
 
 \subsection{アンテナ}
+
+\subsubsection{基本構成}
 
 今回は合計で3つのアンテナを用意した(1号機と2号機は製作したもの、3号機は既製品)。
 それぞれの仕様を\wtab{ant}に示す。
@@ -62,7 +68,36 @@
 	\end{minipage}
 \end{figure}
 
-まず、受信できる周波数を特定するために、それぞれのインダクタンスを測定した。
+\subsubsection{どのぐらい受信できるか}
+
+\wfig{indad}、\wfig{indad5}、\wfig{insda5}にアンテナ一号機、二号機、三号機を用いて4段階増幅（\(5.7^4\)倍）したときの波形を示す。
+アンテナ一号機とアンテナ二号機は、おおよそ1\(\sim\)2 V前後出力されているが、アンテナ三号機はほとんど出力されていない。
+そのため、アンテナ三号機は、受信できていないと考えられる。
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=14cm]{use/b1.png}
+	\caption{アンテナ1号機を用いて4段階増幅（\(5.7^4\)倍）したときの波形}
+	\label{fig:indad}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=14cm]{use/p3.png}
+	\caption{アンテナ二号機を用いて4段階増幅（\(5.7^4\)倍）したときの波形}
+	\label{fig:indad5}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=14cm]{use/s6.png}
+	\caption{アンテナ三号機を用いて4段階増幅（\(5.7^4\)倍）したときの波形}
+	\label{fig:insda5}
+\end{figure}
+
+\subsubsection{アンテナのインダクタンスの測定}
+
+受信できる周波数を特定するために、それぞれのインダクタンスを測定した。
 LCRメータが機能しなかったため、それぞれのインダクタンスの測定は、\wfig{inda}のような回路を用いて行った。
 周波数を変更させて、共振回路間の電圧を測定し、分圧則より共振周波数の場合はインピーダンスがほぼ無限になるため、5Vの電圧が測定できる。
 5Vになった周波数から、\weq{resonance}と共振回路内のセラミックコンデンサ150 pFの値を用いて、インダクタンスを計算した。
@@ -101,7 +136,10 @@ LCRメータが機能しなかったため、それぞれのインダクタン�
 \end{table}
 
 \wtab{ant2}より、一号機と二号機は\wtab{zyushin}の全ての局を聞くことができるのではないかと考えた。
-しかし、綺麗に聞くことができなかったため、バリアブルコンデンサが機能していないのではないかと考えた。
+
+\subsubsection{バリアブルコンデンサの測定}
+
+\wtab{ant2}のように、全ての局を聞くことができなかったため、バリアブルコンデンサが機能していないのではないかと考えた。
 そこで、今度は\wfig{inda3}のようにインダクタンスを一号機に固定させて、バリアブルコンデンサの容量を変化させて、受信できる周波数を測定した（こちらもLCRメータが機能しなかった）。
 バリアブルコンデンサのつまみを最小にしたときと最大にしたときの二種類を測定した。
 
@@ -112,20 +150,19 @@ LCRメータが機能しなかったため、それぞれのインダクタン�
 	\label{fig:inda3}
 \end{figure}
 
-\wfig{inda4}に、\wfig{inda3}の測定結果を示す。
-また\wtab{Q}に、各条件でのQ値を示す。
-2号機つまみ最大に関しては、測定点が足りずQ値を算出できなかった。
+\wfig{inda4}\wfig{inda5}に、\wfig{inda3}の測定結果を示す。
+また\wtab{Q}に、各条件での共振周波数とQ値を示す。
 
 \begin{table}[H]
 	\centering
 	\caption{共振回路のQ値(max:つまみ最大,min:つまみ最小)}
 	\label{tab:Q}
 	\begin{tabular}{ccccccc} \hline
-		     & 最大電圧[V] & 最大電圧/\(\sqrt{2}\) & 共振周波数\(\omega_0\) & \(\omega_1\) & \(\omega_2\) & Q値    \\ \hline
-		1min & 4.71    & 3.33              & 495               & 447          & 555          & 4.583 \\
-		1max & 4.64    & 3.28              & 1410              & 1100         & 2050         & 1.484 \\
-		2min & 4.89    & 3.46              & 305               & 250          & 360          & 2.773 \\
-		2max & 4.30    & 3.04              & 890               & 530          & 1400         & 1.023 \\ \hline
+		       & 最大電圧[V] & 最大電圧/\(\sqrt{2}\)[V] & 共振周波数\(\omega_0\)[kHz] & \(\omega_1\)[kHz] & \(\omega_2\)[kHz] & Q値[--] \\ \hline
+		1号機min & 4.71    & 3.33                 & 495                    & 447               & 555               & 4.583  \\
+		1号機max & 4.64    & 3.28                 & 1410                   & 1100              & 2050              & 1.484  \\
+		2号機min & 4.89    & 3.46                 & 305                    & 250               & 360               & 2.773  \\
+		2号機max & 4.30    & 3.04                 & 890                    & 530               & 1400              & 1.023  \\ \hline
 	\end{tabular}
 \end{table}
 
@@ -136,33 +173,31 @@ LCRメータが機能しなかったため、それぞれのインダクタン�
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=8cm]{fig/min_max2.pdf}
-	\caption{バリアブルコンデンサ測定回路の共振}
+	\includegraphics[width=9cm]{fig/min_max_v2.pdf}
+	\caption{一号機バリアブルコンデンサ測定回路の共振(max:つまみ最大,min:つまみ最小)}
 	\label{fig:inda4}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=8cm]{fig/min_max2_v2.pdf}
-	\caption{バリアブルコンデンサ測定回路の共振}
+	\includegraphics[width=9cm]{fig/min_max2_v2.pdf}
+	\caption{二号機バリアブルコンデンサ測定回路の共振(max:つまみ最大,min:つまみ最小)}
 	\label{fig:inda5}
 \end{figure}
 
-
-
-\wtab{ant3}に、\wfig{inda4}の結果から、バリアブルコンデンサの最小と最大を計算した。
+\wtab{ant3}に、\wfig{inda4}の結果から、バリアブルコンデンサの最小と最大を計算した（一号機はグラフの形が変なので、二号機のグラフを用いた）。
 maxの共振周波数は、Q値が低かったため判断が難しかったが、最大電圧が出力された周波数を共振周波数とした（オシロスコープの分解能のせいであまり正確な値は取れなかった）。
 \wtab{ant3}より、バリアブルコンデンサのつまみを最小にしたときは、理論上の値と実際の値がかなり異なっている。
 しかし、\wtab{ant2}のに出ているすべての局を聞くことができる。
 
 \begin{table}[H]
 	\centering
-	\caption{バリアブルコンデンサ測定回路の結果}
+	\caption{バリアブルコンデンサ測定回路の結果（二号機）}
 	\label{tab:ant3}
-	\begin{tabular}{cccccc} \hline
-		つまみ & 最大電圧[V] & 共振周波数[kHz] & 理論上の値[pF] & 実際の値[pF] \\ \hline
-		min & 5.17    & 約495       & 260       & 254.7    \\
-		max & 5.23    & 約1460      & 4         & 29.3     \\ \hline
+	\begin{tabular}{ccccc} \hline
+		つまみ & 共振周波数[kHz] & 理論上の値[pF] & 実際の値[pF] \\ \hline
+		min & 305        & 260       & 245      \\
+		max & 890        & 4         & 29       \\ \hline
 	\end{tabular}
 \end{table}
 
@@ -175,17 +210,20 @@ maxの共振周波数は、Q値が低かったため判断が難しかったが�
 	\caption{実際に受信できる周波数帯}
 	\label{tab:ant5}
 	\begin{tabular}{ccccc} \hline
-		名称  & インダクタンス[\(\upmu\)H] & 受信できる周波数[kHz]（理論上）      & 受信できる周波数[kHz]（実際）       \\ \hline
-		1号機 & 405.91              & 489.91 \(\sim\) 3949.80 & 約 495.0 \(\sim\) 1460.0 \\
-		2号機 & 1110.24             & 296.23 \(\sim\) 2388.26 & 約 299.3 \(\sim\) 882.4  \\
-		3号機 & 270.58              & 600.69 \(\sim\) 4842.93 & 約 606.3 \(\sim\) 1787.5 \\ \hline
+		名称  & インダクタンス[\(\upmu\)H] & 受信できる周波数[kHz]（理論上）      & 受信できる周波数[kHz]（実際）         \\ \hline
+		1号機 & 405.91              & 489.91 \(\sim\) 3949.80 & 約 478.84 \(\sim\) 1391.80 \\
+		2号機 & 1110.24             & 296.23 \(\sim\) 2388.26 & 約 305.16 \(\sim\) 886.98  \\
+		3号機 & 270.58              & 600.69 \(\sim\) 4842.93 & 約 618.81 \(\sim\) 1798.62 \\ \hline
 	\end{tabular}
 \end{table}
 
 \wtab{ant5}より、受信できる周波数は一号機はほとんど聞くことができ（ラジオの放送局数的に）、二号機は半分ほど聞くことができ、三号機はほとんど聞くことができない（こちらはそもそも同調回路として機能しているのか分からない）。
-特に、NHKなどは全く聞くことができなかった。
+
+\subsubsection{アンテナの向き}
+
+実際には、NHKなどは全く聞くことができなかった。
 原因として、そもそも電波が届いていないのではないかと考えた。
-レーダー方程式によって求めた電力密度と、教室から送信局までの方角を\wtab{aaa}に示す。
+\weq{radar}のレーダー方程式によって求めた電力密度と、教室から送信局までの方角を\wtab{aaa}に示す。
 
 \begin{table}[H]
 	\centering
@@ -212,6 +250,19 @@ TBSラジオと文化放送は、電力密度が14 \(\rm{W/km^2}\)ほどであ�
 疑問として、NHK第2は方角も電力密度もTBSラジオとほとんど変わらないのに聞こえなかったこと。
 ラジオ日本は、方角が悪いが、電力密度は他の送信所に比べて極端に高いのにも関わらず、聞こえなかったことである。
 
+\subsubsection{混信}
+
+アンテナ一号機とアンテナ二号機で、バリアブルコンデンサのつまみを最大にしたとき、TBSラジオと文化放送が特に混信して聞こえた。
+文化放送を基準に、TBSラジオがどのぐらい混信しているかを\weq{k_3}\(\sim\)\weq{k_2}に示す。
+これらの結果より、文化放送とTBSラジオの混信率がほぼ似ているため、文化放送とTBSラジオが同時に聞こえてしまう（文化放送やTBSラジオに共振周波数を合わせるのは困難であった）。
+
+\begin{align}
+	アンテナ一号機の文化放送の混信率        & = \frac{1}{\sqrt{1 + \left(\frac{1410}{1134} + \frac{1134}{1410}\right)^2 1.484^2}} \fallingdotseq 0.313 \label{eq:k_3} \\
+	アンテナ二号機の文化放送の混信率        & = \frac{1}{\sqrt{1 + \left(\frac{890}{1134} + \frac{1134}{890}\right)^2 1.023^2}} \fallingdotseq 0.429                  \\
+	アンテナ一号機の\rm{TBS}ラジオの混信率 & = \frac{1}{\sqrt{1 + \left(\frac{1410}{954} + \frac{954}{1410}\right)^2 1.484^2}} \fallingdotseq 0.298                  \\
+	アンテナ二号機の\rm{TBS}ラジオの混信率 & = \frac{1}{\sqrt{1 + \left(\frac{890}{954} + \frac{954}{890}\right)^2 1.023^2}} \fallingdotseq 0.438 \label{eq:k_2}
+\end{align}
+
 \subsection{検波}
 
 \wfig{koil}に、ループアンテナアンテナから取り出された電圧を示す。
@@ -225,7 +276,7 @@ TBSラジオと文化放送は、電力密度が14 \(\rm{W/km^2}\)ほどであ�
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=7cm]{fig/koil.pdf}
+	\includegraphics[width=7.2cm]{fig/koil.pdf}
 	\caption{ループアンテナから取り出された電圧}
 	\label{fig:koil}
 \end{figure}
@@ -233,14 +284,14 @@ TBSラジオと文化放送は、電力密度が14 \(\rm{W/km^2}\)ほどであ�
 \begin{figure}[H]
 	\begin{minipage}[b]{0.5\linewidth}
 		\centering
-		\includegraphics[width=7cm]{fig/koil_diode.pdf}
+		\includegraphics[width=7.2cm]{fig/koil_diode.pdf}
 		\caption{検波回路で検波された電圧}
 		\label{fig:koil_diode}
 	\end{minipage}
 	\begin{minipage}[b]{0.5\linewidth}
 		\centering
-		\includegraphics[width=7cm]{fig/koil_diode_bi.pdf}
-		\caption{カップリングコンデンサを通したときの電圧}
+		\includegraphics[width=7.2cm]{fig/koil_diode_bi.pdf}
+		\caption{カップリングコンデンサを通した電圧}
 		\label{fig:koil_diode_bi}
 	\end{minipage}
 \end{figure}
@@ -272,7 +323,7 @@ Highest rangeが人間が聞こえる周波数の最高値（20000[Hz]）であ�
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{fig/level12_100m.pdf}
+	\includegraphics[width=9cm]{fig/level12_100m.pdf}
 	\caption{100mVの正弦波を入力したときのアンプ一段二段の出力電圧}
 	\label{fig:12_100m}
 \end{figure}
@@ -287,7 +338,7 @@ Highest rangeが人間が聞こえる周波数の最高値（20000[Hz]）であ�
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{fig/level34_100m.pdf}
+	\includegraphics[width=9cm]{fig/level34_100m.pdf}
 	\caption{100mVの正弦波を入力したときのアンプ三段四段の出力電圧}
 	\label{fig:34_100m}
 \end{figure}
@@ -303,7 +354,7 @@ Highest rangeが人間が聞こえる周波数の最高値（20000[Hz]）であ�
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{fig/level34_1m.pdf}
+	\includegraphics[width=9cm]{fig/level34_1m.pdf}
 	\caption{1mVの正弦波を入力したときのアンプ三段四段の出力電圧}
 	\label{fig:34_1m}
 \end{figure}
@@ -318,7 +369,7 @@ Highest rangeが人間が聞こえる周波数の最高値（20000[Hz]）であ�
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{fig/resi.pdf}
+	\includegraphics[width=9cm]{fig/resi.pdf}
 	\caption{音量調節が出来ているか}
 	\label{fig:resi}
 \end{figure}

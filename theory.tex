@@ -99,13 +99,15 @@ Q値は\weq{Q値}で与えられる\cite{ノート}。
 	Q値 =\frac{\omega_0}{\omega_2 - \omega_1} \label{eq:Q値}
 \end{align}
 
+\subsubsection{理想的な同調回路}
+
 \wfig{radio-circuit}の同調回路は、ループアンテナとバリアブルコンデンサを並列につなげている。
 この同調回路の共振周波数、Q値を考えるために\wfig{kyo}のような理想的な同調回路を考える。
 この並列回路のインピーダンス\(\dot{Z}\)は、\weq{impedance}のようになる。
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=7cm]{fig/kyo.pdf}
+	\includegraphics[width=8cm]{fig/kyo.pdf}
 	\caption{理想的な同調回路}
 	\label{fig:kyo}
 \end{figure}
@@ -124,6 +126,9 @@ Q値は\weq{Q値}で与えられる\cite{ノート}。
 \end{align}
 
 この回路のQ値は\(\infty\)である。
+
+\subsubsection{現実的な同調回路}\label{sec:real}
+
 また、\wfig{kyo2}のようにコイルとコンデンサの抵抗成分を考慮した現実的な同調回路を考えてみる。
 
 \begin{figure}[H]
@@ -159,7 +164,18 @@ $R_1 = 0$としたとき、\weq{kyousin}は\weq{resonance}に一致すること�
 \wfig{tuning-circuit}では、ループアンテナのインダクタンス\(L\)を変更することができない。
 そのため、バリアブルコンデンサのキャパシタンス\(C\)を変更することで、受信したい周波数を選択する。
 
-\subsubsection{選択する周波数}
+\subsubsection{混信率}
+
+\weq{混信率2}\weq{混信率}に、Aラジオ局がBラジオ局にどのぐらい混信してしまうのかを示す。
+混信率が高いと、Aラジオ局とBラジオ局の両方を受信してしまい、複数の音声が聞こえてしまう。
+ここで、\(f_A\)と\(f_B\)はAラジオ局、Bラジオ局の周波数を示す\cite{ノート}。
+
+\begin{align}
+	k   & = \frac{\omega_A}{\omega_B} = \frac{f_A}{f_B} \label{eq:混信率2}                                                                                         \\
+	混信率 & = \frac{1}{\sqrt{1 + \left(k + \frac{1}{k}\right)^2 Q^2}} = \frac{1}{\sqrt{1 + \left(\frac{f_A}{f_B} + \frac{f_B}{f_A}\right)^2 Q^2}}  \label{eq:混信率}
+\end{align}
+
+\subsubsection{選択する周波数} \label{sec:select}
 
 \wfig{map}にAMラジオの送信所を地図にそれぞれ示したものを示す。
 \wtab{zyushin}にAMラジオの送信所の一覧とその周波数、送信出力、学校までの距離、地図上の色（数字）を示す。
@@ -205,7 +221,7 @@ $R_1 = 0$としたとき、\weq{kyousin}は\weq{resonance}に一致すること�
 検波回路は、電波から受け取った信号から音声信号を取り出す回路である。
 今回作ったラジオは、振幅変調波（AM）を受信する回路である。
 振幅変調波は、\wfig{5V}のような搬送波と、\wfig{3V}のような信号波を用いて、\wfig{wave}のような波を電波として送信される。
-仮に、搬送波\(v_c\)の振幅を\(V_{cm}\)、周波数を\(f_c\)、信号波\(v_s\)の振幅を\(V_{sm}\)、周波数を\(f_s\)とすると、それぞれ\weq{v_c}\weq{v_s}のように表すことができる。
+仮に、搬送波\(v_c\)の振幅を\(V_{cm}\)、周波数を\(f_c\)、信号波\(v_s\)の振幅を\(V_{sm}\)、周波数を\(f_s\)とすると、それぞれ\weq{v_c}\weq{v_s}のように表すことができる\cite{電子回路}。
 
 \begin{align}
 	v_c = V_{cm} \sin(2 \pi f_c t) \label{eq:v_c} \\
@@ -320,7 +336,7 @@ $R_1 = 0$としたとき、\weq{kyousin}は\weq{resonance}に一致すること�
 	A_{vf} = \frac{v_o}{v_i} = \frac{R_1 + R_2}{R_1} = 1 + \frac{R_2}{R_1} \label{eq:amp6}
 \end{align}
 
-よって、\wfig{amplifier-circuit2}の電圧増幅度は、\weq{amp7}のようになる。
+よって、\wfig{amplifier-circuit2}の電圧増幅度は、\weq{amp7}のようになる\cite{電子回路}。
 
 \begin{align}
 	A_{vf} = 1 + \frac{47\rm{k}}{10\rm{k}} = 5.7倍 \label{eq:amp7}
